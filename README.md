@@ -36,6 +36,23 @@ With no environment variables set, the full site works: forms validate and log s
 
 ---
 
+## Design system — "Forest Premium"
+
+| Token | Hex | Use |
+| --- | --- | --- |
+| `forest` | `#123A2C` | Hero and feature panels, primary buttons |
+| `deep` | `#0B2A20` | Header, footer, stats strip, body text; dark-mode background |
+| `sage` | `#DCE7DE` | Alternate section background, hero side panel |
+| `cream` | `#F4F1E8` | Page background, text on dark green |
+| `gold` | `#C9A24B` | Accent buttons, figures and labels **on dark green only** |
+| `gold-dark` | `#7A5C14` | Gold-toned text on light backgrounds (meets WCAG AA) |
+| `gold-icon` | `#9A7524` | Icons on light backgrounds |
+
+- **Type:** Outfit (self-hosted via `next/font`). Display headings use the `.display` class — extra-light (200) with `<strong>` for the medium-weight emphasis, e.g. `Calm, reliable IT for <strong>growing businesses.</strong>`.
+- **Labels:** `.eyebrow` (light backgrounds) and `.eyebrow-on-dark` — small, uppercase, widely tracked gold text above headings.
+- **Shape:** sharp corners (`--radius: 0.25rem`), thin gold rules instead of boxed cards, no gradients.
+- Tokens live in `tailwind.config.ts` (palette) and `src/app/globals.css` (light/dark theme variables).
+
 ## Make it yours (first 30 minutes)
 
 1. **Business details** — edit `src/content/site.ts` (city, phone, WhatsApp, email, address, founded year, team size, socials, hours, map embed). Everything — pages, schema markup, emails, local SEO URLs — reads from here.

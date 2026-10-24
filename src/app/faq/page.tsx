@@ -21,8 +21,8 @@ export default function FaqPage() {
         <div className="container max-w-3xl space-y-12">
           {generalFaqs.map((g) => (
             <div key={g.group}>
-              <h2 className="mb-4 text-2xl font-bold">{g.group}</h2>
-              <Accordion type="multiple" className="rounded-2xl border bg-card px-6 shadow-sm">
+              <h2 className="mb-4 text-2xl font-light">{g.group}</h2>
+              <Accordion type="multiple" className="rounded-sm border bg-card px-6">
                 {g.items.map((f, i) => (
                   <AccordionItem key={f.q} value={f.q} className={i === g.items.length - 1 ? "border-b-0" : undefined}>
                     <AccordionTrigger>{f.q}</AccordionTrigger>

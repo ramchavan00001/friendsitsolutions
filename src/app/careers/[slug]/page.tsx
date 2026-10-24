@@ -50,7 +50,7 @@ export default async function JobPage({ params }: Props) {
     <>
       <JsonLd data={jobSchema} />
       <PageHero eyebrow={job.department} title={job.title} description={job.summary} crumbs={[{ name: "Careers", path: "/careers" }, { name: job.title, path: `/careers/${job.slug}` }]}>
-        <ul className="flex flex-wrap gap-4 text-sm text-blue-100">
+        <ul className="flex flex-wrap gap-4 text-sm text-[#D3DDD5]">
           <li className="flex items-center gap-1"><MapPin className="h-4 w-4" aria-hidden="true" />{job.location} · {site.city}</li>
           <li className="flex items-center gap-1"><Briefcase className="h-4 w-4" aria-hidden="true" />{job.type}</li>
           <li className="flex items-center gap-1"><Clock className="h-4 w-4" aria-hidden="true" />{job.experience}</li>
@@ -63,8 +63,8 @@ export default async function JobPage({ params }: Props) {
             {list("What we're looking for", job.requirements)}
             {list("Nice to have", job.niceToHave)}
           </article>
-          <div id="apply" className="rounded-2xl border bg-card p-6 shadow-sm md:p-8">
-            <h2 className="mb-6 text-2xl font-bold">Apply for this role</h2>
+          <div id="apply" className="rounded-sm border bg-card p-6 md:p-8">
+            <h2 className="mb-6 text-2xl font-light">Apply for this role</h2>
             <CareerForm positions={[job.title]} defaultPosition={job.title} />
           </div>
         </div>

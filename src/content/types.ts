@@ -46,7 +46,6 @@ export type CaseStudy = {
   technologies: string[];
   duration: string;
   testimonialId?: string;
-  accent: string; // tailwind gradient classes for the cover
   placeholder: true;
 };
 

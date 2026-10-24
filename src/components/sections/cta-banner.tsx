@@ -1,37 +1,32 @@
 import Link from "next/link";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/content/site";
 
+/** Full-bleed split CTA: sage panel with the headline, deep green panel with the action. */
 export function CtaBanner({
   title = "Let's build something great together",
-  description = "Tell us about your goals and get a free consultation and transparent estimate within 48 hours.",
+  description = "A complimentary consultation and a transparent estimate within 48 hours.",
 }: {
   title?: string;
   description?: string;
 }) {
   return (
-    <section className="section">
-      <div className="container">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-blue to-teal-700 px-6 py-14 text-center text-white shadow-xl md:px-16">
-          <div className="bg-grid absolute inset-0 opacity-10" aria-hidden="true" />
-          <div className="relative">
-            <h2 className="mx-auto max-w-2xl text-3xl font-bold md:text-4xl">{title}</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">{description}</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button asChild size="lg" variant="accent">
-                <Link href="/get-a-quote">
-                  Get a Free Quote <ArrowRight />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="white">
-                <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle /> Chat on WhatsApp
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
+    <section className="grid lg:grid-cols-[1.3fr_1fr]">
+      <div className="bg-sage px-6 py-20 text-deep sm:px-10 lg:py-28 lg:pl-[max(2rem,calc((100vw-1280px)/2+2rem))] lg:pr-16">
+        <p className="eyebrow !text-gold-dark">Begin</p>
+        <h2 className="display mt-5 max-w-2xl text-4xl md:text-[56px]">{title}</h2>
+      </div>
+      <div className="flex flex-col justify-center gap-5 bg-deep px-6 py-20 text-cream sm:px-10 lg:px-16">
+        <p className="max-w-md text-lg font-light">{description}</p>
+        <Button asChild size="lg" variant="accent" className="self-start">
+          <Link href="/get-a-quote">
+            Request a proposal <ArrowRight />
+          </Link>
+        </Button>
+        <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="self-start tracking-[0.04em] text-gold hover:underline">
+          Or message us on WhatsApp
+        </a>
       </div>
     </section>
   );

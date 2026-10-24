@@ -38,12 +38,12 @@ export default function PricingPage() {
           <SectionHeading eyebrow="AMC & managed IT" title="Annual maintenance & managed IT plans" description="Predictable monthly costs, proactive maintenance and SLA-backed support." />
           <div className="grid gap-6 lg:grid-cols-3">
             {amcPlans.map((p) => (
-              <div key={p.name} className={cn("flex flex-col rounded-2xl border bg-card p-7 shadow-sm", p.featured && "border-2 border-brand-teal shadow-lg")}>
-                <h3 className="font-heading text-xl font-bold">{p.name}</h3>
+              <div key={p.name} className={cn("flex flex-col rounded-sm border bg-card p-7", p.featured && "border-2 border-gold shadow-lg")}>
+                <h3 className="font-heading text-xl font-medium">{p.name}</h3>
                 <p className="text-sm text-muted-foreground">{p.description}</p>
-                <p className="mt-5"><span className="font-heading text-4xl font-extrabold">{p.price}</span> <span className="text-sm text-muted-foreground">{p.unit}</span></p>
+                <p className="mt-5"><span className="text-5xl font-extralight">{p.price}</span> <span className="text-sm text-muted-foreground">{p.unit}</span></p>
                 <ul className="mt-6 flex-1 space-y-2.5 text-sm">
-                  {p.features.map((f) => <li key={f} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-teal" aria-hidden="true" />{f}</li>)}
+                  {p.features.map((f) => <li key={f} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-gold-icon dark:text-gold" aria-hidden="true" />{f}</li>)}
                 </ul>
                 <Button asChild className="mt-7" variant={p.featured ? "accent" : "outline"}><Link href="/get-a-quote?service=managed-it-services">Choose {p.name}</Link></Button>
               </div>
@@ -58,7 +58,7 @@ export default function PricingPage() {
           <SectionHeading eyebrow="Service pricing" title="Starting prices by service" description="Indicative starting points — your quote will reflect your exact scope." />
           <div className="space-y-10">
             {servicesByCategory.map((g) => (
-              <div key={g.key} className="overflow-x-auto rounded-2xl border bg-card shadow-sm">
+              <div key={g.key} className="overflow-x-auto rounded-sm border bg-card">
                 <table className="w-full text-left text-sm">
                   <caption className="bg-secondary px-5 py-3 text-left font-heading font-semibold">{g.label}</caption>
                   <thead className="sr-only"><tr><th scope="col">Service</th><th scope="col">Starting price</th></tr></thead>

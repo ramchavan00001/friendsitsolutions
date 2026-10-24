@@ -46,7 +46,7 @@ export default async function CaseStudyPage({ params }: Props) {
           {cs.results.map((r) => (
             <div key={r.label} className="flex flex-col-reverse text-center">
               <dt className="text-sm text-muted-foreground">{r.label}</dt>
-              <dd className="font-heading text-3xl font-extrabold text-primary dark:text-accent md:text-4xl">{r.metric}</dd>
+              <dd className="text-4xl font-extralight text-gold-dark dark:text-gold md:text-5xl">{r.metric}</dd>
             </div>
           ))}
         </dl>
@@ -65,16 +65,16 @@ export default async function CaseStudyPage({ params }: Props) {
             <ul>{cs.results.map((r) => <li key={r.label}><strong>{r.metric}</strong> {r.label.toLowerCase()}</li>)}</ul>
           </article>
           <aside className="space-y-6">
-            <div className="rounded-2xl border bg-card p-6 shadow-sm">
-              <h2 className="flex items-center gap-2 font-heading font-semibold"><Clock className="h-5 w-5 text-brand-teal" aria-hidden="true" /> Duration</h2>
+            <div className="rounded-sm border bg-card p-6">
+              <h2 className="flex items-center gap-2 font-heading font-medium"><Clock className="h-5 w-5 text-gold-icon dark:text-gold" aria-hidden="true" /> Duration</h2>
               <p className="mt-1 text-muted-foreground">{cs.duration}</p>
-              <h2 className="mt-6 flex items-center gap-2 font-heading font-semibold"><Layers className="h-5 w-5 text-brand-teal" aria-hidden="true" /> Services</h2>
+              <h2 className="mt-6 flex items-center gap-2 font-heading font-medium"><Layers className="h-5 w-5 text-gold-icon dark:text-gold" aria-hidden="true" /> Services</h2>
               <ul className="mt-2 flex flex-wrap gap-2">
                 {usedServices.map((s) => <li key={s.slug}><Link href={`/services/${s.slug}`}><Badge>{s.title}</Badge></Link></li>)}
               </ul>
             </div>
-            <div className="rounded-2xl border bg-card p-6 shadow-sm">
-              <h2 className="mb-4 font-heading font-semibold">Technologies</h2>
+            <div className="rounded-sm border bg-card p-6">
+              <h2 className="mb-4 font-heading font-medium">Technologies</h2>
               <TechGrid items={cs.technologies} />
             </div>
           </aside>
@@ -90,7 +90,7 @@ export default async function CaseStudyPage({ params }: Props) {
       {others.length > 0 && (
         <section className="section bg-secondary/40">
           <div className="container">
-            <h2 className="mb-8 text-center text-3xl font-bold">More case studies</h2>
+            <h2 className="mb-8 text-center text-3xl font-light">More case studies</h2>
             <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
               {others.map((c) => <CaseStudyCard key={c.slug} cs={c} />)}
             </div>

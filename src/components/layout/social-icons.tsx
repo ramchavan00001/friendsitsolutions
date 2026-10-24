@@ -19,7 +19,7 @@ export function SocialIcons({ className }: { className?: string }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${site.name} on ${label}`}
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-brand-teal hover:text-slate-950"
+            className="grid h-10 w-10 place-items-center rounded-full border border-forest-light text-cream transition-colors hover:border-gold hover:bg-gold hover:text-deep"
           >
             <Icon className="h-4 w-4" aria-hidden="true" />
           </a>

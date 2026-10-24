@@ -10,7 +10,7 @@ export function ContactDock() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
-        className="fixed bottom-20 left-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105 md:bottom-6 md:left-6"
+        className="fixed bottom-20 left-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-cream shadow-lg transition-transform hover:scale-105 md:bottom-6 md:left-6"
       >
         <MessageCircle className="h-7 w-7" aria-hidden="true" />
       </a>

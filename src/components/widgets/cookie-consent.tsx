@@ -26,9 +26,9 @@ export function CookieConsent() {
   };
 
   return (
-    <div role="dialog" aria-labelledby="cookie-title" aria-live="polite" className="fixed inset-x-3 bottom-16 z-50 mx-auto max-w-2xl rounded-2xl border bg-card p-5 shadow-2xl md:bottom-6">
+    <div role="dialog" aria-labelledby="cookie-title" aria-live="polite" className="fixed inset-x-3 bottom-16 z-50 mx-auto max-w-2xl rounded-sm border bg-card p-5 shadow-2xl md:bottom-6">
       <div className="flex items-start gap-3">
-        <Cookie className="mt-0.5 h-6 w-6 shrink-0 text-brand-teal" aria-hidden="true" />
+        <Cookie className="mt-0.5 h-6 w-6 shrink-0 text-gold-icon dark:text-gold" aria-hidden="true" />
         <div className="flex-1">
           <p id="cookie-title" className="font-heading font-semibold">We value your privacy</p>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -39,8 +39,8 @@ export function CookieConsent() {
             <fieldset className="mt-4 space-y-2 text-sm">
               <legend className="sr-only">Cookie preferences</legend>
               <label className="flex items-center gap-2"><input type="checkbox" checked disabled className="h-4 w-4" /> Necessary (always on)</label>
-              <label className="flex items-center gap-2"><input type="checkbox" checked={analytics} onChange={(e) => setAnalytics(e.target.checked)} className="h-4 w-4 accent-[#14B8A6]" /> Analytics (Google Analytics)</label>
-              <label className="flex items-center gap-2"><input type="checkbox" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} className="h-4 w-4 accent-[#14B8A6]" /> Marketing (Meta Pixel)</label>
+              <label className="flex items-center gap-2"><input type="checkbox" checked={analytics} onChange={(e) => setAnalytics(e.target.checked)} className="h-4 w-4 accent-[#123A2C]" /> Analytics (Google Analytics)</label>
+              <label className="flex items-center gap-2"><input type="checkbox" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} className="h-4 w-4 accent-[#123A2C]" /> Marketing (Meta Pixel)</label>
             </fieldset>
           )}
           <div className="mt-4 flex flex-wrap gap-2">

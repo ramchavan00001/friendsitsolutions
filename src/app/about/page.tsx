@@ -33,7 +33,7 @@ export default async function AboutPage() {
         <div className="container grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <p className="eyebrow mb-4">Our story</p>
-            <h2 className="text-3xl font-bold md:text-4xl">Started by friends. Built on trust.</h2>
+            <h2 className="text-3xl font-light md:text-4xl">Started by friends. Built on trust.</h2>
             {/* REPLACE with your real founding story */}
             <div className="mt-6 space-y-4 text-muted-foreground">
               <p>
@@ -52,15 +52,15 @@ export default async function AboutPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="grid gap-5 sm:grid-cols-2">
-              <div className="rounded-2xl bg-gradient-to-br from-brand-blue to-blue-800 p-7 text-white shadow-lg">
-                <Target className="h-8 w-8 text-teal-300" aria-hidden="true" />
-                <h3 className="mt-4 text-xl font-bold">Our mission</h3>
-                <p className="mt-2 text-blue-100">To make reliable, secure and modern technology accessible to every business — with the care of a friend and the skill of an expert.</p>
+              <div className="rounded-sm bg-forest p-7 text-cream shadow-lg">
+                <Target className="h-8 w-8 text-gold" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-medium">Our mission</h3>
+                <p className="mt-2 text-[#D3DDD5]">To make reliable, secure and modern technology accessible to every business — with the care of a friend and the skill of an expert.</p>
               </div>
-              <div className="rounded-2xl bg-gradient-to-br from-teal-600 to-teal-800 p-7 text-white shadow-lg sm:mt-10">
-                <Eye className="h-8 w-8 text-teal-100" aria-hidden="true" />
-                <h3 className="mt-4 text-xl font-bold">Our vision</h3>
-                <p className="mt-2 text-teal-50">To be India&apos;s most trusted technology partner for growing businesses, known for outcomes, honesty and long-term relationships.</p>
+              <div className="rounded-sm bg-forest p-7 text-cream shadow-lg sm:mt-10">
+                <Eye className="h-8 w-8 text-gold" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-medium">Our vision</h3>
+                <p className="mt-2 text-gold">To be India&apos;s most trusted technology partner for growing businesses, known for outcomes, honesty and long-term relationships.</p>
               </div>
             </div>
           </Reveal>
@@ -82,9 +82,9 @@ export default async function AboutPage() {
           <SectionHeading eyebrow="Our values" title="What we stand for" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((v) => (
-              <div key={v.title} className="rounded-2xl border bg-card p-6 shadow-sm">
-                <Icon name={v.icon} className="h-8 w-8 text-brand-teal" />
-                <h3 className="mt-4 font-heading text-lg font-semibold">{v.title}</h3>
+              <div key={v.title} className="rounded-sm border bg-card p-6">
+                <Icon name={v.icon} className="h-8 w-8 text-gold-icon dark:text-gold" />
+                <h3 className="mt-4 font-heading text-lg font-medium">{v.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{v.description}</p>
               </div>
             ))}
@@ -97,11 +97,11 @@ export default async function AboutPage() {
           <SectionHeading eyebrow="Leadership" title="Meet the team" description="Placeholder profiles — replace with your real team and photos." />
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {team.map((m) => (
-              <li key={m.slug} className="rounded-2xl border bg-card p-6 text-center shadow-sm">
-                <span className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-gradient-to-br from-brand-blue to-brand-teal font-heading text-2xl font-bold text-white" aria-hidden="true">
+              <li key={m.slug} className="rounded-sm border bg-card p-6 text-center">
+                <span className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-forest text-2xl font-light text-gold" aria-hidden="true">
                   {m.name.split(" ").map((p) => p[0]).join("")}
                 </span>
-                <h3 className="mt-4 font-heading font-semibold">{m.name}</h3>
+                <h3 className="mt-4 font-heading font-medium">{m.name}</h3>
                 <p className="text-sm text-primary dark:text-accent">{m.role}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{m.bio}</p>
                 {m.linkedin && (
@@ -121,12 +121,12 @@ export default async function AboutPage() {
       <section className="section bg-secondary/40">
         <div className="container max-w-4xl">
           <SectionHeading eyebrow="Our journey" title="Milestones along the way" />
-          <ol className="relative border-l-2 border-brand-teal/40 pl-8">
+          <ol className="relative border-l-2 border-gold/40 pl-8">
             {timeline.map((t) => (
               <li key={t.year} className="relative mb-10 last:mb-0">
-                <span className="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-background bg-brand-teal" aria-hidden="true" />
-                <p className="font-heading text-sm font-bold text-primary dark:text-accent">{t.year}</p>
-                <h3 className="font-heading text-lg font-semibold">{t.title}</h3>
+                <span className="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-background bg-gold" aria-hidden="true" />
+                <p className="text-sm font-medium tracking-[0.2em] text-gold-dark dark:text-gold">{t.year}</p>
+                <h3 className="font-heading text-lg font-medium">{t.title}</h3>
                 <p className="text-muted-foreground">{t.description}</p>
               </li>
             ))}
@@ -139,8 +139,8 @@ export default async function AboutPage() {
           <SectionHeading eyebrow="Certifications & partnerships" title="Recognised for quality and security" />
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {certifications.map((c) => (
-              <li key={c} className="flex items-center gap-3 rounded-xl border bg-card p-4 font-medium shadow-sm">
-                <Award className="h-6 w-6 shrink-0 text-brand-teal" aria-hidden="true" /> {c}
+              <li key={c} className="flex items-center gap-3 rounded-sm border bg-card p-4 font-medium">
+                <Award className="h-6 w-6 shrink-0 text-gold-icon dark:text-gold" aria-hidden="true" /> {c}
               </li>
             ))}
           </ul>

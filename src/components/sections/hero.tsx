@@ -1,48 +1,56 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { HeroGraphic } from "./hero-graphic";
 
-/** Hero text is server-rendered without entrance animation so it paints immediately (LCP). */
-export function Hero({ projects, clients }: { projects: number; clients: number }) {
+/**
+ * Split-screen hero: forest panel with the message, sage panel with floating proof cards.
+ * Server-rendered without entrance animation so the headline paints immediately (LCP).
+ */
+export function Hero({ founded }: { founded: number }) {
+  const cards = [
+    { label: "Managed servers", value: "99.9% uptime", note: "Monitored around the clock" },
+    { label: "Helpdesk", value: "< 1 hour", note: "Average ticket resolution" },
+    { label: "Security", value: "VAPT · DPDP", note: "Audit-ready infrastructure" },
+  ];
   return (
-    <section className="relative overflow-hidden">
-      <div className="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" aria-hidden="true" />
-      <div className="absolute -top-40 right-0 h-[480px] w-[480px] rounded-full bg-brand-teal/20 blur-3xl" aria-hidden="true" />
-      <div className="absolute -left-40 top-40 h-[420px] w-[420px] rounded-full bg-brand-blue/20 blur-3xl" aria-hidden="true" />
-
-      <div className="container relative grid items-center gap-12 py-16 md:py-24 lg:grid-cols-2">
-        <div>
-          <p className="eyebrow mb-5">
-            <Star className="h-3.5 w-3.5 fill-current" aria-hidden="true" /> Rated 4.9/5 by {clients}+ clients
-          </p>
-          <h1 className="text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">
-            Technology that works <span className="gradient-text">like a good friend</span> — reliable, smart, always there.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            From websites and apps to cloud, cybersecurity and 24/7 IT support — FriendsITSolutions is the one technology partner your
-            business needs to grow with confidence.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg">
-              <Link href="/get-a-quote">
-                Get Free Consultation <ArrowRight />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/portfolio">View Our Work</Link>
-            </Button>
-          </div>
-          <ul className="mt-8 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-            {["Free consultation & estimate", "NDA & full IP ownership", "Dedicated project manager", "24/7 support plans"].map((t) => (
-              <li key={t} className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-brand-teal" aria-hidden="true" /> {t}
-              </li>
-            ))}
-          </ul>
+    <section className="grid lg:min-h-[720px] lg:grid-cols-2">
+      <div className="flex flex-col justify-center bg-forest px-6 py-16 text-cream sm:px-10 lg:py-24 lg:pl-[max(2rem,calc((100vw-1280px)/2+2rem))] lg:pr-16">
+        <p className="eyebrow-on-dark">Technology partner · since {founded}</p>
+        <h1 className="display mt-7 text-[44px] sm:text-6xl xl:text-[80px]">
+          Calm, reliable IT for <strong>growing businesses.</strong>
+        </h1>
+        <p className="mt-7 max-w-[520px] text-lg font-light text-[#D3DDD5] md:text-[19px]">
+          We design, build, secure and support the technology behind hospitals, schools, retailers and enterprises — quietly,
+          expertly and on time.
+        </p>
+        <div className="mt-10 flex flex-wrap gap-3.5">
+          <Button asChild size="lg" variant="accent">
+            <Link href="/get-a-quote">
+              Schedule a consultation <ArrowRight />
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="ghostLight">
+            <Link href="/portfolio">Our work</Link>
+          </Button>
         </div>
+      </div>
 
-        <HeroGraphic projects={projects} />
+      <div className="relative overflow-hidden bg-sage px-6 py-16 text-deep sm:px-10 lg:px-16 lg:py-24" aria-hidden="true">
+        <span className="arc -right-64 -top-40 h-[700px] w-[700px]" />
+        <span className="arc -right-36 -top-10 h-[460px] w-[460px]" />
+        <div className="relative flex h-full flex-col justify-center gap-5">
+          {cards.map((c, i) => (
+            <div
+              key={c.label}
+              className="max-w-[400px] bg-cream px-7 py-6 shadow-[0_30px_60px_-30px_rgba(11,42,32,0.35)]"
+              style={{ marginLeft: i === 0 ? 0 : "clamp(24px, 8vw, 90px)" }}
+            >
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-gold-dark">{c.label}</p>
+              <p className="mt-1.5 text-[40px] font-light leading-tight md:text-[46px]">{c.value}</p>
+              <p className="font-light text-[#4C6458]">{c.note}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

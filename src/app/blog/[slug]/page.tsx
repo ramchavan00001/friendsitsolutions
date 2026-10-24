@@ -63,8 +63,8 @@ export default async function PostPage({ params }: Props) {
         description={post.excerpt}
         crumbs={[{ name: "Blog", path: "/blog" }, { name: post.title, path: `/blog/${post.slug}` }]}
       >
-        <p className="flex flex-wrap items-center gap-3 text-sm text-blue-100">
-          By <Link href={`/blog/author/${post.authorSlug}`} className="font-semibold text-white underline-offset-4 hover:underline">{authorName}</Link>
+        <p className="flex flex-wrap items-center gap-3 text-sm text-[#D3DDD5]">
+          By <Link href={`/blog/author/${post.authorSlug}`} className="font-semibold text-cream underline-offset-4 hover:underline">{authorName}</Link>
           · <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
           · <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" aria-hidden="true" /> {post.readingMinutes} min read</span>
         </p>
@@ -78,8 +78,8 @@ export default async function PostPage({ params }: Props) {
               {post.tags.map((t) => <Link key={t} href={`/blog/tag/${slugify(t)}`}><Badge variant="secondary">#{t}</Badge></Link>)}
             </div>
             {author && (
-              <div className="not-prose mt-10 flex gap-4 rounded-2xl border bg-card p-6">
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand-blue to-brand-teal font-bold text-white" aria-hidden="true">
+              <div className="not-prose mt-10 flex gap-4 rounded-sm border bg-card p-6">
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-forest font-medium text-gold" aria-hidden="true">
                   {author.name.split(" ").map((p) => p[0]).join("")}
                 </span>
                 <div>
@@ -93,14 +93,14 @@ export default async function PostPage({ params }: Props) {
           <aside className="space-y-8 lg:sticky lg:top-28 lg:self-start">
             {toc.length > 0 && (
               <nav aria-label="Table of contents">
-                <h2 className="mb-3 font-heading font-semibold">In this article</h2>
+                <h2 className="mb-3 font-heading font-medium">In this article</h2>
                 <ul className="space-y-2 border-l pl-4 text-sm">
                   {toc.map((h) => <li key={h.text}><a href={`#${slugify(h.text)}`} className="text-muted-foreground hover:text-foreground">{h.text}</a></li>)}
                 </ul>
               </nav>
             )}
             <div>
-              <h2 className="mb-3 font-heading font-semibold">Share</h2>
+              <h2 className="mb-3 font-heading font-medium">Share</h2>
               <ul className="flex gap-2">
                 {share.map(({ label, Icon, href }) => (
                   <li key={label}>
@@ -111,10 +111,10 @@ export default async function PostPage({ params }: Props) {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl bg-gradient-to-br from-brand-blue to-teal-700 p-6 text-white">
+            <div className="rounded-sm bg-forest p-6 text-cream">
               <p className="font-heading text-lg font-semibold">Need expert help?</p>
-              <p className="mt-2 text-sm text-blue-100">Get a free consultation with our team.</p>
-              <Link href="/get-a-quote" className="mt-4 inline-block rounded-lg bg-brand-teal px-4 py-2 text-sm font-semibold text-slate-950">Get a free quote</Link>
+              <p className="mt-2 text-sm text-[#D3DDD5]">Get a free consultation with our team.</p>
+              <Link href="/get-a-quote" className="mt-4 inline-block rounded-sm bg-gold px-4 py-2 text-sm font-semibold text-deep">Get a free quote</Link>
             </div>
           </aside>
         </div>
@@ -123,7 +123,7 @@ export default async function PostPage({ params }: Props) {
       {related.length > 0 && (
         <section className="section bg-secondary/40">
           <div className="container">
-            <h2 className="mb-8 text-center text-3xl font-bold">Keep reading</h2>
+            <h2 className="mb-8 text-center text-3xl font-light">Keep reading</h2>
             <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
               {related.map((p) => <PostCard key={p.slug} post={p} authorName={authors[p.authorSlug] ?? "FriendsITSolutions Team"} />)}
             </div>

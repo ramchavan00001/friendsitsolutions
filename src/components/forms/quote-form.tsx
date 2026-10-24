@@ -25,8 +25,8 @@ const rule = uploadRules.quote!;
 
 function OptionCard({ checked, children, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { checked: boolean }) {
   return (
-    <label className={cn("flex cursor-pointer items-center gap-3 rounded-xl border p-3.5 text-sm transition-colors", checked ? "border-primary bg-primary/5 ring-1 ring-primary dark:border-accent dark:ring-accent" : "hover:bg-secondary")}>
-      <input className="h-4 w-4 accent-[#1E3A8A]" checked={checked} {...props} />
+    <label className={cn("flex cursor-pointer items-center gap-3 rounded-sm border p-3.5 text-sm transition-colors", checked ? "border-primary bg-primary/5 ring-1 ring-primary dark:border-accent dark:ring-accent" : "hover:bg-secondary")}>
+      <input className="h-4 w-4 accent-[#123A2C]" checked={checked} {...props} />
       <span className="font-medium">{children}</span>
     </label>
   );
@@ -70,7 +70,7 @@ export function QuoteForm({ groups, initialService }: { groups: Group[]; initial
       <ol className="mb-8 grid grid-cols-4 gap-2" aria-label="Form progress">
         {steps.map((s, i) => (
           <li key={s.title} aria-current={i === step ? "step" : undefined}>
-            <span className={cn("block h-1.5 rounded-full", i <= step ? "bg-brand-teal" : "bg-secondary")} />
+            <span className={cn("block h-1.5 rounded-full", i <= step ? "bg-gold" : "bg-secondary")} />
             <span className={cn("mt-2 hidden text-xs font-medium sm:block", i === step ? "text-foreground" : "text-muted-foreground")}>
               {i < step && <Check className="mr-1 inline h-3 w-3" aria-hidden="true" />}
               {i + 1}. {s.title}
@@ -79,7 +79,7 @@ export function QuoteForm({ groups, initialService }: { groups: Group[]; initial
         ))}
       </ol>
 
-      <h2 ref={headingRef} tabIndex={-1} className="mb-6 text-2xl font-bold outline-none">
+      <h2 ref={headingRef} tabIndex={-1} className="mb-6 text-2xl font-light outline-none">
         Step {step + 1} of {steps.length}: {steps[step].title}
       </h2>
 

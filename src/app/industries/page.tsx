@@ -25,15 +25,15 @@ export default function IndustriesPage() {
       <section className="section">
         <div className="container grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {industries.map((ind) => (
-            <article key={ind.slug} id={ind.slug} className="scroll-mt-28 rounded-2xl border bg-card p-7 shadow-sm">
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent/15 text-teal-700 dark:text-accent">
+            <article key={ind.slug} id={ind.slug} className="scroll-mt-28 rounded-sm border bg-card p-7">
+              <span className="grid h-12 w-12 place-items-center rounded-sm bg-accent/15 text-gold-dark dark:text-gold">
                 <Icon name={ind.icon} className="h-6 w-6" />
               </span>
-              <h2 className="mt-4 text-xl font-bold">{ind.name}</h2>
+              <h2 className="mt-4 text-xl font-medium">{ind.name}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{ind.description}</p>
               <ul className="mt-4 space-y-2 text-sm">
                 {ind.solutions.map((s) => (
-                  <li key={s} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-teal" aria-hidden="true" />{s}</li>
+                  <li key={s} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-gold-icon dark:text-gold" aria-hidden="true" />{s}</li>
                 ))}
               </ul>
               <Button asChild variant="link" className="mt-4 px-0">

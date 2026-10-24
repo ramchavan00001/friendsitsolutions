@@ -65,15 +65,15 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full border-b transition-all",
-        scrolled ? "border-border bg-background/90 shadow-sm backdrop-blur-md" : "border-transparent bg-background",
+        "sticky top-0 z-40 w-full border-b border-forest-light bg-deep text-cream transition-shadow",
+        scrolled && "shadow-lg shadow-black/20",
       )}
     >
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded-sm focus:bg-gold focus:px-4 focus:py-2 focus:text-deep">
         Skip to content
       </a>
-      <div className="container flex h-16 items-center justify-between gap-4 lg:h-[72px]">
-        <Logo />
+      <div className="container flex h-16 items-center justify-between gap-4 lg:h-[84px]">
+        <Logo inverted />
 
         <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-1">
@@ -86,8 +86,8 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                     aria-controls="mega-menu"
                     onClick={() => setMegaOpen((v) => !v)}
                     className={cn(
-                      "flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium hover:text-primary dark:hover:text-accent",
-                      isActive(item.href) && "text-primary dark:text-accent",
+                      "flex items-center gap-1 rounded-sm px-3 py-2 text-[15px] font-light tracking-[0.04em] text-sage hover:text-gold",
+                      isActive(item.href) && "text-gold",
                     )}
                   >
                     {item.label}
@@ -96,21 +96,21 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                   <div
                     id="mega-menu"
                     hidden={!megaOpen}
-                    className="absolute inset-x-0 top-full border-b bg-background shadow-xl"
+                    className="absolute inset-x-0 top-full border-b bg-card text-foreground shadow-2xl"
                   >
                     <div className="container grid grid-cols-4 gap-6 py-8">
                       {menu.map((group) => (
                         <div key={group.key}>
-                          <p className="mb-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">{group.label}</p>
+                          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-gold-dark dark:text-gold">{group.label}</p>
                           <ul className="space-y-1">
                             {group.services.map((s) => (
                               <li key={s.slug}>
                                 <Link
                                   href={`/services/${s.slug}`}
-                                  className="group flex items-start gap-2.5 rounded-lg p-2 text-sm hover:bg-secondary"
+                                  className="group flex items-start gap-2.5 rounded-sm p-2 text-sm hover:bg-secondary"
                                 >
-                                  <Icon name={s.icon} className="mt-0.5 h-4 w-4 shrink-0 text-brand-teal" />
-                                  <span className="font-medium group-hover:text-primary dark:group-hover:text-accent">{s.title}</span>
+                                  <Icon name={s.icon} className="mt-0.5 h-4 w-4 shrink-0 text-gold-icon dark:text-gold" />
+                                  <span className="group-hover:text-forest dark:group-hover:text-gold">{s.title}</span>
                                 </Link>
                               </li>
                             ))}
@@ -121,7 +121,7 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                     <div className="border-t bg-secondary/50">
                       <div className="container flex items-center justify-between py-3 text-sm">
                         <span className="text-muted-foreground">Not sure what you need? Our experts will guide you — free.</span>
-                        <Link href="/services" className="flex items-center gap-1 font-semibold text-primary dark:text-accent">
+                        <Link href="/services" className="flex items-center gap-1 font-medium text-gold-dark dark:text-gold">
                           View all services <ArrowRight className="h-4 w-4" />
                         </Link>
                       </div>
@@ -134,8 +134,8 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                     href={item.href}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(
-                      "rounded-md px-3 py-2 text-sm font-medium hover:text-primary dark:hover:text-accent",
-                      isActive(item.href) && "text-primary dark:text-accent",
+                      "rounded-sm px-3 py-2 text-[15px] font-light tracking-[0.04em] text-sage hover:text-gold",
+                      isActive(item.href) && "text-gold",
                     )}
                   >
                     {item.label}
@@ -147,27 +147,27 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
         </nav>
 
         <div className="flex items-center gap-1 sm:gap-2">
-          <a href={`tel:${phoneHref}`} className="hidden items-center gap-2 whitespace-nowrap rounded-md px-2 text-sm font-semibold 2xl:flex">
-            <Phone className="h-4 w-4 text-brand-teal" aria-hidden="true" />
+          <a href={`tel:${phoneHref}`} className="hidden items-center gap-2 whitespace-nowrap rounded-sm px-2 text-sm font-light text-sage hover:text-gold 2xl:flex">
+            <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
             {phone}
           </a>
-          <Button asChild variant="ghost" size="icon" aria-label="Search the site">
+          <Button asChild variant="ghost" size="icon" aria-label="Search the site" className="text-cream hover:bg-cream/10 hover:text-gold">
             <Link href="/search">
               <Search />
             </Link>
           </Button>
-          <ThemeToggle />
-          <Button asChild variant="accent" className="hidden sm:inline-flex">
+          <ThemeToggle className="text-cream hover:bg-cream/10 hover:text-gold" />
+          <Button asChild variant="outline" className="hidden border-gold bg-transparent text-gold hover:bg-gold hover:text-deep sm:inline-flex">
             <Link href="/get-a-quote">Get Free Quote</Link>
           </Button>
 
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
+              <Button variant="ghost" size="icon" className="text-cream hover:bg-cream/10 hover:text-gold lg:hidden" aria-label="Open menu">
                 <Menu />
               </Button>
             </SheetTrigger>
-            <SheetContent className="overflow-y-auto">
+            <SheetContent className="overflow-y-auto text-foreground">
               <SheetTitle className="sr-only">Menu</SheetTitle>
               <div className="border-b p-4">
                 <Logo />
@@ -178,18 +178,18 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                     item.mega ? (
                       <li key={item.href}>
                         <details className="group">
-                          <summary className="flex cursor-pointer list-none items-center justify-between rounded-md px-3 py-2.5 font-medium hover:bg-secondary">
+                          <summary className="flex cursor-pointer list-none items-center justify-between rounded-sm px-3 py-2.5 font-medium hover:bg-secondary">
                             {item.label}
                             <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" aria-hidden="true" />
                           </summary>
                           <div className="space-y-3 py-2 pl-3">
                             {menu.map((g) => (
                               <div key={g.key}>
-                                <p className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-muted-foreground">{g.label}</p>
+                                <p className="px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-gold-dark dark:text-gold">{g.label}</p>
                                 <ul>
                                   {g.services.map((s) => (
                                     <li key={s.slug}>
-                                      <Link href={`/services/${s.slug}`} className="block rounded-md px-3 py-1.5 text-sm hover:bg-secondary">
+                                      <Link href={`/services/${s.slug}`} className="block rounded-sm px-3 py-1.5 text-sm hover:bg-secondary">
                                         {s.title}
                                       </Link>
                                     </li>
@@ -197,7 +197,7 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                                 </ul>
                               </div>
                             ))}
-                            <Link href="/services" className="block px-3 text-sm font-semibold text-primary dark:text-accent">
+                            <Link href="/services" className="block px-3 text-sm font-medium text-gold-dark dark:text-gold">
                               All services →
                             </Link>
                           </div>
@@ -205,7 +205,7 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                       </li>
                     ) : (
                       <li key={item.href}>
-                        <Link href={item.href} className="block rounded-md px-3 py-2.5 font-medium hover:bg-secondary">
+                        <Link href={item.href} className="block rounded-sm px-3 py-2.5 font-medium hover:bg-secondary">
                           {item.label}
                         </Link>
                       </li>

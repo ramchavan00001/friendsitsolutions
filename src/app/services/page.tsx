@@ -30,14 +30,14 @@ export default function ServicesPage() {
         crumbs={[{ name: "Services", path: "/services" }]}
       >
         <Button asChild size="lg" variant="accent"><Link href="/get-a-quote">Get a Free Quote <ArrowRight /></Link></Button>
-        <Button asChild size="lg" variant="white"><Link href="/book-a-meeting">Book a Free Consultation</Link></Button>
+        <Button asChild size="lg" variant="ghostLight"><Link href="/book-a-meeting">Book a Free Consultation</Link></Button>
       </PageHero>
 
       <nav aria-label="Service categories" className="sticky top-16 z-30 border-b bg-background/95 backdrop-blur lg:top-[72px]">
         <div className="container flex gap-2 overflow-x-auto py-3">
           {servicesByCategory.map((g) => (
             <a key={g.key} href={`#${g.key}`} className="flex shrink-0 items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium hover:bg-secondary">
-              <Icon name={categoryIcons[g.key]} className="h-4 w-4 text-brand-teal" /> {g.label}
+              <Icon name={categoryIcons[g.key]} className="h-4 w-4 text-gold-icon dark:text-gold" /> {g.label}
             </a>
           ))}
         </div>

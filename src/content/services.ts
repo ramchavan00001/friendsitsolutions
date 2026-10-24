@@ -55,7 +55,7 @@ export const serviceCategories: Record<
 /** FAQs appended to every service page (service name is substituted in). */
 export const sharedServiceFaqs = (title: string): FAQ[] => [
   {
-    q: `How much does ${title.toLowerCase()} cost?`,
+    q: `How much does ${title} cost?`,
     a: "Pricing depends on scope, complexity and timelines. We share a transparent, itemised estimate after a free consultation — with fixed-price, hourly and dedicated-team options.",
   },
   {

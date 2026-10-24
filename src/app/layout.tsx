@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/layout/providers";
 import { Header, type MenuGroup } from "@/components/layout/header";
@@ -14,8 +14,7 @@ import { mainNav } from "@/content/misc";
 import { servicesByCategory } from "@/content/services";
 import { localBusinessSchema, organizationSchema } from "@/lib/schema";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["600", "700", "800"], variable: "--font-poppins", display: "swap" });
+const outfit = Outfit({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600"], variable: "--font-outfit", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -35,8 +34,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1120" },
+    { media: "(prefers-color-scheme: light)", color: "#0B2A20" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B2A20" },
   ],
 };
 
@@ -49,7 +48,7 @@ const menu: MenuGroup[] = servicesByCategory.map((g) => ({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" suppressHydrationWarning className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en-IN" suppressHydrationWarning className={outfit.variable}>
       <body className="min-h-screen font-sans">
         <JsonLd data={[organizationSchema(), localBusinessSchema()]} />
         <Providers>

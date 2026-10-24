@@ -20,16 +20,20 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   );
 }
 
-export function Stats({ items }: { items: { value: number; suffix?: string; label: string }[] }) {
+/** Deep green strip of key numbers with thin gold figures. */
+export function Stats({ items }: { items: { value: number; suffix?: string; label: string; animate?: boolean }[] }) {
   return (
-    <section aria-label="Company statistics" className="py-14">
+    <section aria-label="Company statistics" className="bg-deep text-cream">
       <div className="container">
-        <dl className="grid grid-cols-2 gap-6 md:grid-cols-5">
-          {items.map((s) => (
-            <div key={s.label} className="flex flex-col-reverse rounded-2xl border bg-card p-6 text-center shadow-sm">
-              <dt className="mt-1 text-sm text-muted-foreground">{s.label}</dt>
-              <dd className="font-heading text-3xl font-extrabold text-primary dark:text-accent md:text-4xl">
-                <Counter to={s.value} suffix={s.suffix} />
+        <dl className="grid grid-cols-2 md:grid-cols-5">
+          {items.map((s, i) => (
+            <div
+              key={s.label}
+              className={`flex flex-col-reverse py-10 md:px-6 ${i > 0 ? "md:border-l md:border-forest-light" : "md:pl-0"}`}
+            >
+              <dt className="mt-1 text-sm font-light tracking-[0.06em] text-[#B9C7BE]">{s.label}</dt>
+              <dd className="text-5xl font-extralight leading-none text-gold md:text-[52px]">
+                {s.animate === false ? `${s.value}${s.suffix ?? ""}` : <Counter to={s.value} suffix={s.suffix} />}
               </dd>
             </div>
           ))}

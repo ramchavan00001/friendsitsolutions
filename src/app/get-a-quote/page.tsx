@@ -19,7 +19,7 @@ export default async function QuotePage({ searchParams }: { searchParams: Promis
       <PageHero eyebrow="Free quote" title="Get a free, no-obligation quote" description="Answer a few quick questions — it takes about 2 minutes. We'll come back with a tailored proposal within 48 hours." crumbs={[{ name: "Get a Quote", path: "/get-a-quote" }]} />
       <section className="section">
         <div className="container grid gap-10 lg:grid-cols-4">
-          <div className="rounded-2xl border bg-card p-6 shadow-sm md:p-8 lg:col-span-3">
+          <div className="rounded-sm border bg-card p-6 md:p-8 lg:col-span-3">
             <QuoteForm groups={groups} initialService={service} />
           </div>
           <aside className="space-y-4">
@@ -28,9 +28,9 @@ export default async function QuotePage({ searchParams }: { searchParams: Promis
               { Icon: CheckCircle2, title: "Itemised proposal", text: "Transparent pricing with scope, milestones and timelines." },
               { Icon: ShieldCheck, title: "Your data is safe", text: "We're happy to sign an NDA. Details are used only for your quote." },
             ].map(({ Icon, title, text }) => (
-              <div key={title} className="rounded-2xl border bg-card p-5 shadow-sm">
-                <Icon className="h-6 w-6 text-brand-teal" aria-hidden="true" />
-                <h2 className="mt-3 font-heading font-semibold">{title}</h2>
+              <div key={title} className="rounded-sm border bg-card p-5">
+                <Icon className="h-6 w-6 text-gold-icon dark:text-gold" aria-hidden="true" />
+                <h2 className="mt-3 font-heading font-medium">{title}</h2>
                 <p className="mt-1 text-sm text-muted-foreground">{text}</p>
               </div>
             ))}

@@ -21,7 +21,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             <label htmlFor="site-search" className="sr-only">Search the site</label>
             <div className="relative flex-1">
               <Search className="pointer-events-none absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" aria-hidden="true" />
-              <input id="site-search" name="q" type="search" defaultValue={query} autoFocus placeholder="Try “cloud migration”, “CCTV” or “pricing”" className="h-12 w-full rounded-lg border border-input bg-background pl-11 pr-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+              <input id="site-search" name="q" type="search" defaultValue={query} autoFocus placeholder="Try “cloud migration”, “CCTV” or “pricing”" className="h-12 w-full rounded-sm border border-input bg-background pl-11 pr-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
             </div>
             <Button type="submit" size="lg">Search</Button>
           </form>
@@ -30,15 +30,15 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
           )}
           <ul className="mt-6 space-y-4">
             {results.map((r) => (
-              <li key={r.href + r.title} className="rounded-xl border bg-card p-5 shadow-sm">
+              <li key={r.href + r.title} className="rounded-sm border bg-card p-5">
                 <Badge variant="secondary">{r.type}</Badge>
-                <h2 className="mt-2 font-heading text-lg font-semibold"><Link href={r.href} className="hover:text-primary hover:underline dark:hover:text-accent">{r.title}</Link></h2>
+                <h2 className="mt-2 font-heading text-lg font-medium"><Link href={r.href} className="hover:text-primary hover:underline dark:hover:text-accent">{r.title}</Link></h2>
                 <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{r.excerpt}</p>
               </li>
             ))}
           </ul>
           {query && !results.length && (
-            <p className="mt-6 rounded-xl border border-dashed p-8 text-center text-muted-foreground">
+            <p className="mt-6 rounded-sm border border-dashed p-8 text-center text-muted-foreground">
               Nothing found. Try different keywords, or <Link href="/contact" className="font-semibold text-primary underline dark:text-accent">ask our team</Link>.
             </p>
           )}

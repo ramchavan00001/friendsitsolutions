@@ -30,15 +30,15 @@ export default async function CareersPage() {
           <SectionHeading eyebrow="Life at FriendsIT" title="Why you'll love working here" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {perks.map((p) => (
-              <div key={p.title} className="rounded-2xl border bg-card p-6 shadow-sm">
-                <Icon name={p.icon} className="h-7 w-7 text-brand-teal" />
-                <h3 className="mt-4 font-heading font-semibold">{p.title}</h3>
+              <div key={p.title} className="rounded-sm border bg-card p-6">
+                <Icon name={p.icon} className="h-7 w-7 text-gold-icon dark:text-gold" />
+                <h3 className="mt-4 font-heading font-medium">{p.title}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{p.description}</p>
               </div>
             ))}
           </div>
-          <div className="mt-12 rounded-2xl bg-secondary/60 p-8">
-            <h3 className="font-heading text-xl font-semibold">Our culture in a nutshell</h3>
+          <div className="mt-12 rounded-sm bg-secondary/60 p-8">
+            <h3 className="font-heading text-xl font-medium">Our culture in a nutshell</h3>
             <ul className="mt-4 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
               {values.map((v) => <li key={v.title}><b>{v.title}.</b> <span className="text-muted-foreground">{v.description}</span></li>)}
             </ul>
@@ -51,9 +51,9 @@ export default async function CareersPage() {
           <SectionHeading eyebrow={`${jobs.length} open roles`} title="Open positions" />
           <ul className="space-y-4">
             {jobs.map((j) => (
-              <li key={j.slug} className="flex flex-col gap-4 rounded-2xl border bg-card p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+              <li key={j.slug} className="flex flex-col gap-4 rounded-sm border bg-card p-6 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <h3 className="font-heading text-lg font-semibold"><Link href={`/careers/${j.slug}`} className="hover:text-primary dark:hover:text-accent">{j.title}</Link></h3>
+                  <h3 className="font-heading text-lg font-medium"><Link href={`/careers/${j.slug}`} className="hover:text-primary dark:hover:text-accent">{j.title}</Link></h3>
                   <p className="mt-1 text-sm text-muted-foreground">{j.summary}</p>
                   <div className="mt-3 flex flex-wrap gap-2 text-xs">
                     <Badge variant="secondary"><Briefcase className="mr-1 h-3 w-3" aria-hidden="true" />{j.department}</Badge>
@@ -72,7 +72,7 @@ export default async function CareersPage() {
       <section className="section">
         <div className="container max-w-3xl">
           <SectionHeading title="Don't see the right role?" description={`Send us your resume anyway — we're always looking for great people. Or email ${site.careersEmail}.`} />
-          <div className="rounded-2xl border bg-card p-6 shadow-sm md:p-8">
+          <div className="rounded-sm border bg-card p-6 md:p-8">
             <CareerForm positions={[...jobs.map((j) => j.title), "General application"]} defaultPosition="General application" />
           </div>
         </div>

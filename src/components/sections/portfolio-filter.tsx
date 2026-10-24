@@ -35,7 +35,7 @@ export function PortfolioFilter({
 
   return (
     <div>
-      <div className="mb-10 grid gap-4 rounded-2xl border bg-card p-5 shadow-sm sm:grid-cols-3 sm:items-end">
+      <div className="mb-10 grid gap-4 rounded-sm border bg-card p-5 sm:grid-cols-3 sm:items-end">
         <div className="space-y-1.5">
           <Label htmlFor="filter-service">Service</Label>
           <Select id="filter-service" value={service} onChange={(e) => { setService(e.target.value); sync("service", e.target.value); }}>
@@ -64,7 +64,7 @@ export function PortfolioFilter({
           {filtered.map((cs) => <CaseStudyCard key={cs.slug} cs={cs} />)}
         </div>
       ) : (
-        <p className="rounded-2xl border border-dashed p-10 text-center text-muted-foreground">
+        <p className="rounded-sm border border-dashed p-10 text-center text-muted-foreground">
           No case studies match these filters yet — but we&apos;ve likely done similar work. Ask us for relevant examples!
         </p>
       )}

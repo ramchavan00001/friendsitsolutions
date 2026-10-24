@@ -23,6 +23,5 @@ export const caseStudy = defineType({
     defineField({ name: "technologies", type: "array", of: [{ type: "string" }], options: { layout: "tags" } }),
     defineField({ name: "duration", type: "string" }),
     defineField({ name: "testimonial", type: "reference", to: [{ type: "testimonial" }] }),
-    defineField({ name: "accent", type: "string", initialValue: "from-sky-600 to-teal-500", description: "Tailwind gradient classes for the card cover" }),
   ],
 });

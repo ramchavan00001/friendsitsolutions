@@ -36,7 +36,7 @@ export default async function LocationPage({ params }: Props) {
   if (!page) notFound();
   const pageServices = services.filter((s) => page.serviceSlugs.includes(s.slug));
   const faqs = [
-    { q: `Why choose a local ${page.title.replace(` in ${site.city}`, "").toLowerCase()} partner in ${site.city}?`, a: `A local team means face-to-face meetings, faster on-site support and a partner who understands the ${site.city} market. We also serve clients across India and abroad remotely.` },
+    { q: `Why choose a local partner in ${site.city}?`, a: `A local team means face-to-face meetings, faster on-site support and a partner who understands the ${site.city} market. We also serve clients across India and abroad remotely.` },
     { q: `Which areas of ${site.city} do you cover?`, a: `We serve businesses across ${site.city} and nearby areas, with on-site visits for support and installation projects.` },
     { q: "How quickly can you start?", a: "Most projects kick off within a week of approval. Urgent support requests are handled the same day." },
     { q: "Do you offer a free consultation?", a: `Yes — visit our ${site.city} office, call ${site.phone}, or book an online meeting at no cost.` },
@@ -46,7 +46,7 @@ export default async function LocationPage({ params }: Props) {
       <JsonLd data={localBusinessSchema()} />
       <PageHero eyebrow={`${site.city}, ${site.state}`} title={page.headline} description={page.intro} crumbs={[{ name: page.title, path: `/locations/${slug}` }]}>
         <Button asChild size="lg" variant="accent"><Link href="/get-a-quote">Get a Free Quote</Link></Button>
-        <Button asChild size="lg" variant="white"><a href={`tel:${site.phoneHref}`}><Phone /> {site.phone}</a></Button>
+        <Button asChild size="lg" variant="ghostLight"><a href={`tel:${site.phoneHref}`}><Phone /> {site.phone}</a></Button>
       </PageHero>
       <section className="section">
         <div className="container">
@@ -65,15 +65,15 @@ export default async function LocationPage({ params }: Props) {
       <section className="section">
         <div className="container grid gap-8 lg:grid-cols-2">
           <TestimonialCard t={testimonials[0]} />
-          <div className="rounded-2xl border bg-card p-6 shadow-sm">
-            <h2 className="flex items-center gap-2 font-heading text-xl font-semibold"><MapPin className="h-5 w-5 text-brand-teal" aria-hidden="true" /> Visit our {site.city} office</h2>
+          <div className="rounded-sm border bg-card p-6">
+            <h2 className="flex items-center gap-2 font-heading text-xl font-medium"><MapPin className="h-5 w-5 text-gold-icon dark:text-gold" aria-hidden="true" /> Visit our {site.city} office</h2>
             <address className="mt-3 not-italic text-muted-foreground">{site.streetAddress}, {site.city}, {site.state} {site.postalCode}</address>
-            <iframe title={`Map of ${site.name} in ${site.city}`} src={site.mapEmbedUrl} className="mt-4 h-56 w-full rounded-xl border" loading="lazy" />
+            <iframe title={`Map of ${site.name} in ${site.city}`} src={site.mapEmbedUrl} className="mt-4 h-56 w-full rounded-sm border" loading="lazy" />
           </div>
         </div>
       </section>
       <FaqSection faqs={faqs} title={`${page.title} — FAQs`} moreLink={false} />
-      <CtaBanner title={`Looking for a reliable ${page.title.toLowerCase()}?`} />
+      <CtaBanner title={`Looking for ${page.title}? Let’s talk.`} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { Breadcrumbs, type Crumb } from "./breadcrumbs";
 
-/** Standard hero for inner pages: brand gradient, breadcrumbs, H1, intro and optional actions. */
+/** Standard hero for inner pages: forest panel, breadcrumbs, H1, intro and optional actions. */
 export function PageHero({
   title,
   description,
@@ -15,14 +15,15 @@ export function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-blue via-blue-900 to-teal-800 text-white">
-      <div className="bg-grid absolute inset-0 opacity-[0.07]" aria-hidden="true" />
-      <div className="container relative py-14 md:py-20">
+    <section className="relative overflow-hidden bg-forest text-cream">
+      <span className="arc -right-48 -top-56 h-[620px] w-[620px] border-forest-light" aria-hidden="true" />
+      <span className="arc -right-24 -top-20 h-[380px] w-[380px] border-forest-light" aria-hidden="true" />
+      <div className="container relative py-16 md:py-24">
         <Breadcrumbs items={crumbs} />
-        {eyebrow && <p className="mb-4 inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-teal-200">{eyebrow}</p>}
-        <h1 className="max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{title}</h1>
-        {description && <p className="mt-5 max-w-3xl text-lg text-blue-100">{description}</p>}
-        {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
+        {eyebrow && <p className="eyebrow-on-dark mb-5">{eyebrow}</p>}
+        <h1 className="display max-w-4xl text-4xl md:text-[56px]">{title}</h1>
+        {description && <p className="mt-6 max-w-3xl text-lg font-light text-[#D3DDD5]">{description}</p>}
+        {children && <div className="mt-9 flex flex-wrap gap-3.5">{children}</div>}
       </div>
     </section>
   );

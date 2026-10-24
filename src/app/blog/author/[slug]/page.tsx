@@ -29,7 +29,7 @@ export default async function AuthorPage({ params }: Props) {
       <PageHero eyebrow={author.role} title={author.name} description={author.bio} crumbs={[{ name: "Blog", path: "/blog" }, { name: author.name, path: `/blog/author/${slug}` }]} />
       <section className="section">
         <div className="container">
-          <h2 className="mb-6 text-2xl font-bold">Articles by {author.name.split(" ")[0]} ({theirs.length})</h2>
+          <h2 className="mb-6 text-2xl font-light">Articles by {author.name.split(" ")[0]} ({theirs.length})</h2>
           <BlogList posts={theirs} authors={authors} />
         </div>
       </section>

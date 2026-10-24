@@ -19,10 +19,10 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
   return (
     <section className="section">
       <div className="container max-w-2xl text-center">
-        <CheckCircle2 className="mx-auto h-16 w-16 text-brand-teal" aria-hidden="true" />
-        <h1 className="mt-6 text-4xl font-bold">{c.title}</h1>
+        <CheckCircle2 className="mx-auto h-16 w-16 text-gold-icon dark:text-gold" aria-hidden="true" />
+        <h1 className="mt-6 text-4xl font-light">{c.title}</h1>
         <p className="mt-4 text-lg text-muted-foreground">{c.body}</p>
-        {ref && <p className="mt-4 inline-block rounded-lg bg-secondary px-4 py-2 font-mono text-sm">Reference: {ref.slice(0, 40)}</p>}
+        {ref && <p className="mt-4 inline-block rounded-sm bg-secondary px-4 py-2 font-mono text-sm">Reference: {ref.slice(0, 40)}</p>}
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button asChild><Link href="/">Back to home</Link></Button>
           <Button asChild variant="outline"><Link href="/portfolio">Browse our work</Link></Button>

@@ -4,7 +4,7 @@ export function SectionHeading({
   eyebrow,
   title,
   description,
-  align = "center",
+  align = "left",
   className,
   as: Tag = "h2",
 }: {
@@ -17,9 +17,9 @@ export function SectionHeading({
 }) {
   return (
     <div className={cn("mb-10 max-w-3xl md:mb-14", align === "center" && "mx-auto text-center", className)}>
-      {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
-      <Tag className="text-3xl font-bold md:text-4xl">{title}</Tag>
-      {description && <p className="mt-4 text-lg text-muted-foreground">{description}</p>}
+      {eyebrow && <p className="eyebrow mb-5">{eyebrow}</p>}
+      <Tag className="display text-[34px] md:text-5xl lg:text-[56px]">{title}</Tag>
+      {description && <p className="mt-5 text-lg font-light text-muted-foreground">{description}</p>}
     </div>
   );
 }

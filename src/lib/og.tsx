@@ -15,24 +15,22 @@ export function ogImage({ title, kicker }: { title: string; kicker?: string }) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "linear-gradient(135deg, #1E3A8A 0%, #1e40af 55%, #0F766E 100%)",
-          color: "white",
+          background: "#123A2C",
+          color: "#F4F1E8",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 36, fontWeight: 700 }}>
-          <div style={{ width: 64, height: 64, borderRadius: 14, background: "#14B8A6", display: "flex", alignItems: "center", justifyContent: "center", color: "#0f172a", fontWeight: 800 }}>F</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 34, fontWeight: 500 }}>
+          <div style={{ width: 60, height: 60, borderRadius: 999, border: "2px solid #C9A24B", display: "flex", alignItems: "center", justifyContent: "center", color: "#C9A24B", fontWeight: 500 }}>F</div>
           <div style={{ display: "flex" }}>
-            <span>Friends</span>
-            <span style={{ color: "#5eead4" }}>IT</span>
-            <span>Solutions</span>
+            <span>FriendsIT Solutions</span>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          {kicker && <div style={{ fontSize: 28, color: "#99f6e4", textTransform: "uppercase", letterSpacing: 2 }}>{kicker}</div>}
-          <div style={{ fontSize: title.length > 60 ? 56 : 68, fontWeight: 800, lineHeight: 1.1 }}>{title}</div>
+          {kicker && <div style={{ fontSize: 28, color: "#C9A24B", textTransform: "uppercase", letterSpacing: 6 }}>{kicker}</div>}
+          <div style={{ fontSize: title.length > 60 ? 56 : 68, fontWeight: 300, lineHeight: 1.1 }}>{title}</div>
         </div>
-        <div style={{ display: "flex", fontSize: 26, color: "#bfdbfe" }}>
+        <div style={{ display: "flex", fontSize: 26, color: "#B9C7BE" }}>
           {`${site.tagline} · ${site.url.replace(/^https?:\/\//, "")}`}
         </div>
       </div>

@@ -19,12 +19,12 @@ export async function sendEmail(opts: { to: string | string[]; subject: string; 
 }
 
 const layout = (body: string) => `
-<div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;color:#0f172a">
-  <div style="background:#1E3A8A;padding:20px 24px;border-radius:12px 12px 0 0">
-    <span style="color:#fff;font-size:20px;font-weight:700">Friends<span style="color:#14B8A6">IT</span>Solutions</span>
+<div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;color:#0B2A20">
+  <div style="background:#123A2C;padding:20px 24px">
+    <span style="color:#F4F1E8;font-size:20px;font-weight:500;letter-spacing:.02em">FriendsIT <span style="color:#C9A24B">Solutions</span></span>
   </div>
-  <div style="border:1px solid #e2e8f0;border-top:0;padding:24px;border-radius:0 0 12px 12px">${body}</div>
-  <p style="font-size:12px;color:#64748b;text-align:center;margin-top:16px">
+  <div style="border:1px solid #C4D6C8;border-top:3px solid #C9A24B;padding:24px;background:#FBF9F4">${body}</div>
+  <p style="font-size:12px;color:#4C6458;text-align:center;margin-top:16px">
     ${escapeHtml(site.name)} · ${escapeHtml(site.city)}, ${escapeHtml(site.country)} · ${escapeHtml(site.phone)}
   </p>
 </div>`;

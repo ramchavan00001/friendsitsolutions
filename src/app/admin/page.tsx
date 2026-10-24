@@ -36,14 +36,14 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
     <div className="container py-10">
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Admin dashboard</h1>
+          <h1 className="text-3xl font-light">Admin dashboard</h1>
           <p className="text-sm text-muted-foreground">Leads, quotes, job applications, support tickets and subscribers.</p>
         </div>
         <Button asChild variant="outline"><a href={`/admin/export?table=${table}`}><Download /> Export CSV</a></Button>
       </div>
 
       {!configured && (
-        <p className="mb-6 rounded-lg border border-amber-500/40 bg-amber-500/10 p-4 text-sm">
+        <p className="mb-6 rounded-sm border border-amber-500/40 bg-amber-500/10 p-4 text-sm">
           Supabase isn&apos;t configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY and run <code>supabase/schema.sql</code> to start storing submissions.
         </p>
       )}
@@ -59,11 +59,11 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
       <form className="mb-6 flex max-w-md gap-2" role="search">
         <input type="hidden" name="tab" value={table} />
         <label htmlFor="admin-q" className="sr-only">Search</label>
-        <input id="admin-q" name="q" defaultValue={q} placeholder="Search name, email or reference" className="h-10 flex-1 rounded-lg border border-input bg-background px-3 text-sm" />
+        <input id="admin-q" name="q" defaultValue={q} placeholder="Search name, email or reference" className="h-10 flex-1 rounded-sm border border-input bg-background px-3 text-sm" />
         <Button type="submit">Search</Button>
       </form>
 
-      <div className="overflow-x-auto rounded-2xl border bg-card shadow-sm">
+      <div className="overflow-x-auto rounded-sm border bg-card">
         <table className="w-full text-left text-sm">
           <thead className="bg-secondary text-xs uppercase tracking-wide text-muted-foreground">
             <tr>

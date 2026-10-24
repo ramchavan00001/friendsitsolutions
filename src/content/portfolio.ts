@@ -24,7 +24,6 @@ export const caseStudies: CaseStudy[] = [
     technologies: ["Next.js", "Node.js", "PostgreSQL", "Flutter", "AWS", "Veeam"],
     duration: "7 months",
     testimonialId: "t1",
-    accent: "from-sky-600 to-teal-500",
     placeholder: true,
   },
   {
@@ -48,7 +47,6 @@ export const caseStudies: CaseStudy[] = [
     technologies: ["Shopify", "Next.js", "Razorpay", "Claude", "GA4", "Google Ads"],
     duration: "4 months build + ongoing growth",
     testimonialId: "t2",
-    accent: "from-indigo-600 to-fuchsia-500",
     placeholder: true,
   },
   {
@@ -72,7 +70,6 @@ export const caseStudies: CaseStudy[] = [
     technologies: ["Aruba", "Fortinet", "Hikvision", "Google Workspace", "NinjaOne"],
     duration: "10 weeks + AMC",
     testimonialId: "t4",
-    accent: "from-emerald-600 to-cyan-500",
     placeholder: true,
   },
 ];

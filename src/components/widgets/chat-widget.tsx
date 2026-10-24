@@ -113,13 +113,13 @@ export default function ChatWidget() {
           id="chat-panel"
           role="dialog"
           aria-label="Chat with FriendsITSolutions"
-          className="fixed bottom-36 right-3 z-50 flex h-[min(560px,calc(100vh-10rem))] w-[calc(100vw-1.5rem)] max-w-sm flex-col overflow-hidden rounded-2xl border bg-card shadow-2xl md:bottom-24 md:right-6"
+          className="fixed bottom-36 right-3 z-50 flex h-[min(560px,calc(100vh-10rem))] w-[calc(100vw-1.5rem)] max-w-sm flex-col overflow-hidden rounded-sm border bg-card shadow-2xl md:bottom-24 md:right-6"
         >
-          <div className="flex items-center gap-3 bg-gradient-to-r from-brand-blue to-teal-700 p-4 text-white">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-white/15"><Bot className="h-5 w-5" aria-hidden="true" /></span>
+          <div className="flex items-center gap-3 bg-forest p-4 text-cream">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-cream/10"><Bot className="h-5 w-5" aria-hidden="true" /></span>
             <div>
               <p className="font-heading font-semibold leading-tight">Fia · FriendsIT Assistant</p>
-              <p className="text-xs text-blue-100">Typically replies instantly</p>
+              <p className="text-xs text-[#D3DDD5]">Typically replies instantly</p>
             </div>
           </div>
 
@@ -128,7 +128,7 @@ export default function ChatWidget() {
               <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
                 <p
                   className={cn(
-                    "max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2 text-sm",
+                    "max-w-[85%] whitespace-pre-wrap rounded-sm px-3.5 py-2 text-sm",
                     m.role === "user" ? "rounded-br-sm bg-primary text-primary-foreground" : "rounded-bl-sm bg-secondary",
                   )}
                 >
@@ -151,7 +151,7 @@ export default function ChatWidget() {
               </div>
             )}
             {showLead && (
-              <form onSubmit={submitLead} className="space-y-2 rounded-xl border bg-background p-3">
+              <form onSubmit={submitLead} className="space-y-2 rounded-sm border bg-background p-3">
                 <p className="text-sm font-semibold">Leave your details for a callback</p>
                 <Input aria-label="Your name" placeholder="Name" required minLength={2} value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })} />
                 <Input aria-label="Email" type="email" placeholder="Email" required value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })} />

@@ -46,15 +46,20 @@ const config: Config = {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        brand: {
-          blue: "#1E3A8A",
-          teal: "#14B8A6",
-          "teal-dark": "#0F766E",
+        // Forest Premium palette
+        forest: { DEFAULT: "#123A2C", light: "#1A4A39" },
+        deep: "#0B2A20",
+        sage: { DEFAULT: "#DCE7DE", dark: "#C4D6C8" },
+        cream: "#F4F1E8",
+        gold: {
+          DEFAULT: "#C9A24B", // fills, and text on dark green
+          dark: "#7A5C14", // text on light backgrounds (AA)
+          icon: "#9A7524", // icons on light backgrounds
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        heading: ["var(--font-poppins)", "var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        heading: ["var(--font-outfit)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

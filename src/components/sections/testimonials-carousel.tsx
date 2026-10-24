@@ -63,7 +63,7 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
               aria-current={p === index}
               className="grid h-11 min-w-6 place-items-center px-1"
             >
-              <span className={cn("block h-2.5 rounded-full transition-all", p === index ? "w-8 bg-primary dark:bg-accent" : "w-2.5 bg-slate-300 dark:bg-slate-600")} />
+              <span className={cn("block h-2.5 rounded-full transition-all", p === index ? "w-8 bg-gold" : "w-2.5 bg-sage-dark dark:bg-forest-light")} />
             </button>
           ))}
         </div>

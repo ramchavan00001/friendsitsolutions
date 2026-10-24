@@ -28,7 +28,7 @@ export function FileInput({
       <label htmlFor={id} className="text-sm font-medium">
         {label}{required && <span className="text-destructive" aria-hidden="true"> *</span>}
       </label>
-      <label htmlFor={id} className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-input p-4 text-sm text-muted-foreground hover:bg-secondary">
+      <label htmlFor={id} className="flex cursor-pointer items-center gap-3 rounded-sm border border-dashed border-input p-4 text-sm text-muted-foreground hover:bg-secondary">
         <Paperclip className="h-5 w-5" aria-hidden="true" />
         <span>Click to choose {maxFiles > 1 ? `up to ${maxFiles} files` : "a file"} (max {maxMb} MB each)</span>
       </label>

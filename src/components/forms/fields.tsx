@@ -62,7 +62,7 @@ export function ConsentCheckbox({ registration, error, id = "consent" }: { regis
   return (
     <div className="space-y-1">
       <label htmlFor={id} className="flex items-start gap-2 text-sm text-muted-foreground">
-        <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-input accent-[#14B8A6]" {...a11y(id, error)} {...registration} />
+        <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-input accent-[#123A2C]" {...a11y(id, error)} {...registration} />
         <span>
           I agree to the <Link href="/privacy-policy" className="underline hover:text-foreground">Privacy Policy</Link> and consent to
           FriendsITSolutions processing my details to respond to this request.
@@ -78,7 +78,7 @@ export function FormFooter({ onToken, error }: { onToken: (t: string | null) => 
     <>
       <Turnstile onToken={onToken} />
       {error && (
-        <p role="alert" className="rounded-lg border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive">
+        <p role="alert" className="rounded-sm border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive">
           {error}
         </p>
       )}

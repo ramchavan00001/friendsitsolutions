@@ -14,7 +14,7 @@ export default function BookPage() {
       <PageHero eyebrow="Book a call" title="Book a free 30-minute consultation" description="Choose a convenient slot. We'll discuss your goals and suggest the best way forward — no strings attached." crumbs={[{ name: "Book a Meeting", path: "/book-a-meeting" }]} />
       <section className="section">
         <div className="container max-w-5xl">
-          <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
+          <div className="overflow-hidden rounded-sm border bg-card">
             {/* Cal.com inline embed. Set NEXT_PUBLIC_CAL_LINK (e.g. "your-team/30min"). For Calendly, swap the src for your Calendly URL. */}
             <iframe title="Book a meeting with FriendsITSolutions" src={`https://cal.com/${site.calLink}?embed=true&theme=auto`} className="h-[720px] w-full" loading="lazy" />
           </div>

@@ -61,7 +61,7 @@ export default async function ServicePage({ params }: Props) {
         <Button asChild size="lg" variant="accent">
           <Link href={`/get-a-quote?service=${service.slug}`}>Get a Free Quote <ArrowRight /></Link>
         </Button>
-        <Button asChild size="lg" variant="white">
+        <Button asChild size="lg" variant="ghostLight">
           <a href={`tel:${site.phoneHref}`}><Phone /> Talk to an expert</a>
         </Button>
       </PageHero>
@@ -71,10 +71,10 @@ export default async function ServicePage({ params }: Props) {
         <div className="container grid gap-10 lg:grid-cols-2">
           <Reveal>
             <p className="eyebrow mb-4">The challenge</p>
-            <h2 className="text-3xl font-bold">Sound familiar?</h2>
+            <h2 className="text-3xl font-light">Sound familiar?</h2>
             <ul className="mt-6 space-y-4">
               {service.problems.map((p) => (
-                <li key={p} className="flex gap-3 rounded-xl border bg-card p-4">
+                <li key={p} className="flex gap-3 rounded-sm border bg-card p-4">
                   <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />
                   <span>{p}</span>
                 </li>
@@ -82,14 +82,14 @@ export default async function ServicePage({ params }: Props) {
             </ul>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="h-full rounded-2xl bg-gradient-to-br from-brand-blue to-teal-700 p-8 text-white shadow-xl">
-              <span className="grid h-14 w-14 place-items-center rounded-xl bg-white/15">
+            <div className="h-full rounded-sm bg-forest p-8 text-cream shadow-xl">
+              <span className="grid h-14 w-14 place-items-center rounded-sm bg-cream/10">
                 <Icon name={service.icon} className="h-7 w-7" />
               </span>
-              <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-teal-200">Our solution</p>
-              <h2 className="mt-2 text-3xl font-bold">{service.title}, done right</h2>
-              <p className="mt-4 text-lg text-blue-100">{service.solution}</p>
-              <Button asChild variant="white" className="mt-8">
+              <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-gold">Our solution</p>
+              <h2 className="mt-2 text-3xl font-light">{service.title}, done right</h2>
+              <p className="mt-4 text-lg text-[#D3DDD5]">{service.solution}</p>
+              <Button asChild variant="ghostLight" className="mt-8">
                 <Link href="/book-a-meeting">Book a free consultation</Link>
               </Button>
             </div>
@@ -100,7 +100,7 @@ export default async function ServicePage({ params }: Props) {
       {/* 3. What's included */}
       <section className="section bg-secondary/40">
         <div className="container">
-          <SectionHeading eyebrow="What's included" title={`Our ${service.title.toLowerCase()} services`} />
+          <SectionHeading eyebrow="What's included" title={<>Everything you get with <strong>{service.title}</strong></>} />
           <FeatureGrid items={service.features} />
         </div>
       </section>
@@ -127,9 +127,9 @@ export default async function ServicePage({ params }: Props) {
           <SectionHeading eyebrow="Benefits" title="What you gain" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {service.benefits.map((b) => (
-              <div key={b.title} className="rounded-2xl border bg-card p-6 shadow-sm">
-                <CheckCircle2 className="h-7 w-7 text-brand-teal" aria-hidden="true" />
-                <h3 className="mt-4 font-heading text-lg font-semibold">{b.title}</h3>
+              <div key={b.title} className="rounded-sm border bg-card p-6">
+                <CheckCircle2 className="h-7 w-7 text-gold-icon dark:text-gold" aria-hidden="true" />
+                <h3 className="mt-4 font-heading text-lg font-medium">{b.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{b.description}</p>
               </div>
             ))}
@@ -148,17 +148,17 @@ export default async function ServicePage({ params }: Props) {
           )}
           <div className="flex flex-col lg:col-span-2">
             <p className="eyebrow mb-4 self-start">Pricing</p>
-            <div className="flex flex-1 flex-col justify-center rounded-2xl border-2 border-brand-teal bg-card p-8 text-center shadow-lg">
+            <div className="flex flex-1 flex-col justify-center rounded-sm border-2 border-gold bg-card p-8 text-center shadow-lg">
               {service.startingPrice ? (
                 <>
                   <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Starting from</p>
-                  <p className="mt-2 font-heading text-4xl font-extrabold text-primary dark:text-accent">{service.startingPrice}</p>
+                  <p className="mt-2 text-5xl font-extralight text-gold-dark dark:text-gold">{service.startingPrice}</p>
                   {service.priceUnit && <p className="text-sm text-muted-foreground">{service.priceUnit}</p>}
                   <p className="mt-4 text-sm text-muted-foreground">Final price depends on scope. Get an itemised, no-obligation quote within 48 hours.</p>
                 </>
               ) : (
                 <>
-                  <p className="font-heading text-2xl font-bold">Custom pricing</p>
+                  <p className="text-3xl font-light">Custom pricing</p>
                   <p className="mt-3 text-sm text-muted-foreground">Every project is unique. Tell us your requirements for a tailored quote.</p>
                 </>
               )}
@@ -198,7 +198,7 @@ export default async function ServicePage({ params }: Props) {
       )}
 
       {/* 11. Final CTA */}
-      <CtaBanner title={`Ready to get started with ${service.title.toLowerCase()}?`} />
+      <CtaBanner title={`Ready to get started with ${service.title}?`} />
     </>
   );
 }

@@ -2,52 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Forest Premium — deep forest green, sage, cream and gold. */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    /* Deep blue #1E3A8A */
-    --primary: 224 64% 33%;
-    --primary-foreground: 0 0% 100%;
-    /* Teal #14B8A6 — paired with dark text for WCAG AA contrast */
-    --accent: 173 80% 40%;
-    --accent-foreground: 222 47% 11%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 19% 35%;
-    --destructive: 0 72% 45%;
+    /* Cream #F4F1E8 ground, deep green #0B2A20 text */
+    --background: 45 35% 93%;
+    --foreground: 160 58% 10%;
+    --card: 45 40% 97%;
+    --card-foreground: 160 58% 10%;
+    --popover: 45 40% 97%;
+    --popover-foreground: 160 58% 10%;
+    /* Forest #123A2C */
+    --primary: 158 53% 15%;
+    --primary-foreground: 45 35% 93%;
+    /* Gold #C9A24B — always paired with deep green text */
+    --accent: 41 54% 54%;
+    --accent-foreground: 160 58% 10%;
+    /* Sage #DCE7DE */
+    --secondary: 132 18% 89%;
+    --secondary-foreground: 160 58% 10%;
+    --muted: 132 18% 89%;
+    --muted-foreground: 150 14% 33%;
+    --destructive: 0 65% 42%;
     --destructive-foreground: 0 0% 100%;
-    --border: 214 32% 91%;
-    --input: 214 32% 85%;
-    --ring: 224 64% 33%;
-    --radius: 0.75rem;
+    --border: 135 14% 79%;
+    --input: 135 12% 70%;
+    --ring: 42 72% 28%;
+    --radius: 0.25rem;
   }
 
   .dark {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
-    --card: 222 40% 10%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 40% 10%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --accent: 173 80% 40%;
-    --accent-foreground: 222 47% 7%;
-    --secondary: 217 33% 15%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 15%;
-    --muted-foreground: 215 20% 70%;
-    --destructive: 0 63% 55%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 217 33% 18%;
-    --input: 217 33% 22%;
-    --ring: 173 80% 40%;
+    --background: 160 58% 10%;
+    --foreground: 45 35% 93%;
+    --card: 158 53% 13%;
+    --card-foreground: 45 35% 93%;
+    --popover: 158 53% 13%;
+    --popover-foreground: 45 35% 93%;
+    --primary: 41 54% 54%;
+    --primary-foreground: 160 58% 10%;
+    --accent: 41 54% 54%;
+    --accent-foreground: 160 58% 10%;
+    --secondary: 158 45% 17%;
+    --secondary-foreground: 45 35% 93%;
+    --muted: 158 45% 17%;
+    --muted-foreground: 140 12% 76%;
+    --destructive: 0 63% 60%;
+    --destructive-foreground: 160 58% 10%;
+    --border: 157 39% 20%;
+    --input: 157 35% 26%;
+    --ring: 41 54% 54%;
   }
 
   * {
@@ -58,7 +61,7 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "cv11", "ss01";
+    font-weight: 400;
   }
   h1, h2, h3, h4 {
     @apply font-heading tracking-tight;
@@ -70,18 +73,24 @@
 
 @layer components {
   .section {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
   }
+  /* Small uppercase, widely tracked label above headings */
   .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-accent;
+    @apply inline-block text-xs font-medium uppercase tracking-[0.28em] text-gold-dark dark:text-gold;
   }
-  .gradient-text {
-    @apply bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent dark:from-blue-400 dark:to-teal-300;
+  .eyebrow-on-dark {
+    @apply inline-block text-xs font-medium uppercase tracking-[0.28em] text-gold;
   }
-  .bg-grid {
-    background-image: linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
-    background-size: 48px 48px;
+  /* Display headings: extra-light with a medium-weight emphasis */
+  .display {
+    @apply font-extralight leading-[1.06] tracking-[-0.015em];
+  }
+  .display strong {
+    @apply font-medium;
+  }
+  .arc {
+    @apply pointer-events-none absolute rounded-full border border-sage-dark;
   }
 }
 
