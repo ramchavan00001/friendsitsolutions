@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Icon, type IconName } from "@/components/icon";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,9 @@ import { Reveal } from "./reveal";
 import { faqSchema } from "@/lib/schema";
 import { cn } from "@/lib/utils";
 import type { CaseStudy, FAQ, Feature, Industry, Step, Testimonial } from "@/content/types";
-import { engagementModels } from "@/content/misc";
+import { localizedEngagementModels } from "@/i18n/content";
+import { getT } from "@/i18n/dictionaries";
+import { fmt } from "@/i18n/format";
 
 /** Items separated by a thin gold rule — no boxes. */
 export function FeatureGrid({ items, icons, columns = 3 }: { items: Feature[]; icons?: IconName[]; columns?: 2 | 3 | 4 }) {
@@ -113,11 +115,11 @@ export function FeaturedCase({ cs }: { cs: CaseStudy }) {
         {cs.results[0].metric}
       </div>
       <div className="flex flex-col justify-center px-6 py-14 sm:px-10 lg:px-16">
-        <p className="eyebrow-on-dark">Case study · {cs.industry}</p>
+        <p className="eyebrow-on-dark">{getT().common.caseStudy} · {cs.industry}</p>
         <h3 className="mt-4 text-3xl font-light leading-snug md:text-4xl">{cs.title}</h3>
         <p className="mt-4 font-light text-[#C8D4CC]">{cs.summary}</p>
         <Link href={`/portfolio/${cs.slug}`} className="mt-7 self-start tracking-[0.04em] text-gold hover:underline">
-          Read the case study →
+          {getT().common.readTheCaseStudy}
         </Link>
       </div>
     </section>
@@ -138,16 +140,17 @@ export function QuoteBlock({ t }: { t: Testimonial }) {
 }
 
 export function EngagementModels() {
+  const t = getT().common;
   return (
     <div className="grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
-      {engagementModels.map((m) => {
-        const featured = "featured" in m && m.featured;
+      {localizedEngagementModels().map((m) => {
+        const featured = m.featured;
         return (
-          <div key={m.name} className={cn("relative flex flex-col p-8", featured ? "bg-forest text-cream" : "bg-card")}>
-            {featured && <span className="eyebrow-on-dark mb-4">Most popular</span>}
+          <div key={m.icon} className={cn("relative flex flex-col p-8", featured ? "bg-forest text-cream" : "bg-card")}>
+            {featured && <span className="eyebrow-on-dark mb-4">{t.mostPopular}</span>}
             <Icon name={m.icon} className={cn("h-7 w-7", featured ? "text-gold" : "text-gold-icon dark:text-gold")} strokeWidth={1.4} />
             <h3 className="mt-5 text-2xl font-normal">{m.name}</h3>
-            <p className={cn("mt-1 text-xs uppercase tracking-[0.16em]", featured ? "text-[#B9C7BE]" : "text-muted-foreground")}>Best for: {m.bestFor}</p>
+            <p className={cn("mt-1 text-xs uppercase tracking-[0.16em]", featured ? "text-[#B9C7BE]" : "text-muted-foreground")}>{fmt(t.bestFor, { x: m.bestFor })}</p>
             <p className={cn("mt-4 font-light", featured ? "text-[#D3DDD5]" : "text-muted-foreground")}>{m.description}</p>
             <p className={cn("mt-5 text-2xl font-light", featured ? "text-gold" : "text-gold-dark dark:text-gold")}>{m.price}</p>
             <ul className="mt-5 flex-1 space-y-2.5 text-sm font-light">
@@ -169,7 +172,7 @@ export function EngagementModels() {
 
 export function FaqSection({
   faqs,
-  title = "Frequently asked questions",
+  title,
   description,
   withSchema = true,
   moreLink = true,
@@ -180,11 +183,12 @@ export function FaqSection({
   withSchema?: boolean;
   moreLink?: boolean;
 }) {
+  const t = getT().common;
   return (
     <section className="section">
       {withSchema && <JsonLd data={faqSchema(faqs)} />}
       <div className="container grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
-        <SectionHeading eyebrow="FAQ" title={title} description={description} className="mb-0" />
+        <SectionHeading eyebrow={t.faqEyebrow} title={title ?? t.faqTitle} description={description} className="mb-0" />
         <div>
           <Accordion type="single" collapsible className="border-t border-border">
             {faqs.map((f, i) => (
@@ -196,9 +200,9 @@ export function FaqSection({
           </Accordion>
           {moreLink && (
             <p className="mt-8 text-sm font-light">
-              Have another question?{" "}
+              {t.faqMoreQuestion}{" "}
               <Link href="/faq" className="inline-flex items-center gap-1 tracking-[0.04em] text-gold-dark hover:underline dark:text-gold">
-                See all FAQs <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {t.faqMoreLink} <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </p>
           )}

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, Phone, Search } from "lucide-react";
@@ -10,6 +10,10 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Icon, type IconName } from "@/components/icon";
 import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "./language-switcher";
+import { useI18n } from "@/i18n/provider";
+import { fmt } from "@/i18n/format";
+import { stripLocale } from "@/i18n/config";
 
 export type MenuGroup = {
   key: string;
@@ -20,7 +24,8 @@ export type MenuGroup = {
 type NavItem = { label: string; href: string; mega?: boolean };
 
 export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: MenuGroup[]; phone: string; phoneHref: string }) {
-  const pathname = usePathname();
+  const { t } = useI18n();
+  const pathname = stripLocale(usePathname());
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -70,12 +75,12 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
       )}
     >
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded-sm focus:bg-gold focus:px-4 focus:py-2 focus:text-deep">
-        Skip to content
+        {t.skipToContent}
       </a>
       <div className="container flex h-16 items-center justify-between gap-4 lg:h-[84px]">
         <Logo inverted />
 
-        <nav aria-label="Main" className="hidden lg:block">
+        <nav aria-label={t.nav.main} className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {nav.map((item) =>
               item.mega ? (
@@ -86,7 +91,7 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                     aria-controls="mega-menu"
                     onClick={() => setMegaOpen((v) => !v)}
                     className={cn(
-                      "flex items-center gap-1 rounded-sm px-3 py-2 text-[15px] font-light tracking-[0.04em] text-sage hover:text-gold",
+                      "flex items-center gap-1 whitespace-nowrap rounded-sm px-2 py-2 2xl:px-3 text-[15px] font-light tracking-[0.04em] text-sage hover:text-gold",
                       isActive(item.href) && "text-gold",
                     )}
                   >
@@ -120,9 +125,9 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                     </div>
                     <div className="border-t bg-secondary/50">
                       <div className="container flex items-center justify-between py-3 text-sm">
-                        <span className="text-muted-foreground">Not sure what you need? Our experts will guide you — free.</span>
+                        <span className="text-muted-foreground">{t.nav.megaHelp}</span>
                         <Link href="/services" className="flex items-center gap-1 font-medium text-gold-dark dark:text-gold">
-                          View all services <ArrowRight className="h-4 w-4" />
+                          {t.nav.viewAllServices} <ArrowRight className="h-4 w-4" />
                         </Link>
                       </div>
                     </div>
@@ -134,7 +139,7 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                     href={item.href}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(
-                      "rounded-sm px-3 py-2 text-[15px] font-light tracking-[0.04em] text-sage hover:text-gold",
+                      "whitespace-nowrap rounded-sm px-2 py-2 2xl:px-3 text-[15px] font-light tracking-[0.04em] text-sage hover:text-gold",
                       isActive(item.href) && "text-gold",
                     )}
                   >
@@ -151,28 +156,29 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
             <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
             {phone}
           </a>
-          <Button asChild variant="ghost" size="icon" aria-label="Search the site" className="text-cream hover:bg-cream/10 hover:text-gold">
+          <Button asChild variant="ghost" size="icon" aria-label={t.header.search} className="text-cream hover:bg-cream/10 hover:text-gold">
             <Link href="/search">
               <Search />
             </Link>
           </Button>
-          <ThemeToggle className="text-cream hover:bg-cream/10 hover:text-gold" />
+          <LanguageSwitcher />
+          <ThemeToggle className="text-cream hover:bg-cream/10 hover:text-gold" label={t.header.toggleTheme} />
           <Button asChild variant="outline" className="hidden border-gold bg-transparent text-gold hover:bg-gold hover:text-deep sm:inline-flex">
-            <Link href="/get-a-quote">Get Free Quote</Link>
+            <Link href="/get-a-quote">{t.header.getFreeQuote}</Link>
           </Button>
 
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-cream hover:bg-cream/10 hover:text-gold lg:hidden" aria-label="Open menu">
+              <Button variant="ghost" size="icon" className="text-cream hover:bg-cream/10 hover:text-gold xl:hidden" aria-label={t.header.openMenu}>
                 <Menu />
               </Button>
             </SheetTrigger>
-            <SheetContent className="overflow-y-auto text-foreground">
-              <SheetTitle className="sr-only">Menu</SheetTitle>
+            <SheetContent className="overflow-y-auto text-foreground" closeLabel={t.header.closeMenu}>
+              <SheetTitle className="sr-only">{t.header.menu}</SheetTitle>
               <div className="border-b p-4">
                 <Logo />
               </div>
-              <nav aria-label="Mobile" className="flex-1 p-4">
+              <nav aria-label={t.nav.mobile} className="flex-1 p-4">
                 <ul className="space-y-1">
                   {nav.map((item) =>
                     item.mega ? (
@@ -198,7 +204,7 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                               </div>
                             ))}
                             <Link href="/services" className="block px-3 text-sm font-medium text-gold-dark dark:text-gold">
-                              All services →
+                              {t.nav.allServices}
                             </Link>
                           </div>
                         </details>
@@ -214,12 +220,13 @@ export function Header({ nav, menu, phone, phoneHref }: { nav: NavItem[]; menu: 
                 </ul>
               </nav>
               <div className="space-y-2 border-t p-4">
+                <LanguageSwitcher variant="sheet" />
                 <Button asChild variant="accent" className="w-full">
-                  <Link href="/get-a-quote">Get Free Quote</Link>
+                  <Link href="/get-a-quote">{t.header.getFreeQuote}</Link>
                 </Button>
                 <Button asChild variant="outline" className="w-full">
                   <a href={`tel:${phoneHref}`}>
-                    <Phone /> Call {phone}
+                    <Phone /> {fmt(t.header.call, { phone })}
                   </a>
                 </Button>
               </div>

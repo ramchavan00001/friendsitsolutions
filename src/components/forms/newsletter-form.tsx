@@ -6,15 +6,18 @@ import { newsletterSchema, type NewsletterInput } from "@/lib/forms/schemas";
 import { useFormSubmit } from "./use-form-submit";
 import { Honeypot } from "./fields";
 import { Turnstile } from "./turnstile";
+import { useErrorText, useI18n } from "@/i18n/provider";
 
 export function NewsletterForm() {
+  const t = useI18n().t.newsletter;
+  const te = useErrorText();
   const { submit, status, error, setToken, honeypot, setHoneypot } = useFormSubmit("newsletter", { redirect: false });
   const { register, handleSubmit, formState: { errors }, reset } = useForm<NewsletterInput>({ resolver: zodResolver(newsletterSchema) });
 
   if (status === "success") {
     return (
       <p className="flex items-center gap-2 text-sm text-gold" role="status">
-        <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> You&apos;re subscribed — welcome aboard!
+        <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> {t.done}
       </p>
     );
   }
@@ -29,7 +32,7 @@ export function NewsletterForm() {
     >
       <Honeypot value={honeypot} onChange={setHoneypot} />
       <div className="flex gap-2">
-        <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+        <label htmlFor="newsletter-email" className="sr-only">{t.label}</label>
         <input
           id="newsletter-email"
           type="email"
@@ -44,12 +47,12 @@ export function NewsletterForm() {
           disabled={status === "submitting"}
           className="inline-flex h-10 items-center rounded-sm bg-gold px-4 text-sm font-medium text-deep hover:bg-gold/85 disabled:opacity-60"
         >
-          {status === "submitting" ? <Loader2 className="h-4 w-4 animate-spin" aria-label="Subscribing" /> : "Subscribe"}
+          {status === "submitting" ? <Loader2 className="h-4 w-4 animate-spin" aria-label={t.subscribing} /> : t.subscribe}
         </button>
       </div>
       <Turnstile onToken={setToken} />
       {(errors.email || error) && (
-        <p role="alert" className="text-xs text-[#F2B8A8]">{errors.email?.message ?? error}</p>
+        <p role="alert" className="text-xs text-[#F2B8A8]">{te(errors.email?.message) ?? error}</p>
       )}
     </form>
   );

@@ -4,10 +4,12 @@ import { z } from "zod";
 import { chatSystemPrompt, matchFaq } from "@/lib/chat-knowledge";
 import { clientIp, rateLimit } from "@/lib/forms/rate-limit";
 import { site } from "@/content/site";
+import { isLocale, localeNames } from "@/i18n/config";
 
 export const runtime = "nodejs";
 
 const bodySchema = z.object({
+  locale: z.string().max(5).optional(),
   messages: z
     .array(z.object({ role: z.enum(["user", "assistant"]), content: z.string().trim().min(1).max(1000) }))
     .min(1)
@@ -28,6 +30,7 @@ export async function POST(request: Request) {
   // The conversation must start with a user turn.
   const messages = parsed.data.messages.slice(parsed.data.messages.findIndex((m) => m.role === "user"));
   const lastQuestion = messages[messages.length - 1].content;
+  const lang = isLocale(parsed.data.locale) && parsed.data.locale !== "en" ? localeNames[parsed.data.locale].english : null;
 
   if (!client) {
     return NextResponse.json({ reply: matchFaq(lastQuestion) ?? fallbackReply, mode: "faq" });
@@ -44,7 +47,11 @@ export async function POST(request: Request) {
       fallbacks: "default",
       cache_control: { type: "ephemeral" },
       system: chatSystemPrompt(),
-      messages,
+      // Mid-conversation system message keeps the cached system prompt intact while setting the reply language.
+      messages: [
+        ...messages,
+        ...(lang ? [{ role: "system" as const, content: `The visitor is browsing the ${lang} version of the site. Reply in the language they write in, defaulting to ${lang}.` }] : []),
+      ],
     });
     if (response.stop_reason === "refusal") {
       return NextResponse.json({ reply: fallbackReply, mode: "ai" });

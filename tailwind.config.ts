@@ -58,8 +58,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
-        heading: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        sans: ["var(--font-outfit)", "var(--font-deva)", "var(--font-jp)", "system-ui", "sans-serif"],
+        heading: ["var(--font-outfit)", "var(--font-deva)", "var(--font-jp)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

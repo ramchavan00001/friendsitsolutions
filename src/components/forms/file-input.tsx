@@ -1,6 +1,8 @@
 "use client";
 import { Paperclip, X } from "lucide-react";
 import { useId } from "react";
+import { useI18n } from "@/i18n/provider";
+import { fmt } from "@/i18n/format";
 
 /** Accessible multi-file picker with client-side size/type checks. */
 export function FileInput({
@@ -23,6 +25,7 @@ export function FileInput({
   required?: boolean;
 }) {
   const id = useId();
+  const t = useI18n().t.forms;
   return (
     <div className="space-y-1.5">
       <label htmlFor={id} className="text-sm font-medium">
@@ -30,7 +33,7 @@ export function FileInput({
       </label>
       <label htmlFor={id} className="flex cursor-pointer items-center gap-3 rounded-sm border border-dashed border-input p-4 text-sm text-muted-foreground hover:bg-secondary">
         <Paperclip className="h-5 w-5" aria-hidden="true" />
-        <span>Click to choose {maxFiles > 1 ? `up to ${maxFiles} files` : "a file"} (max {maxMb} MB each)</span>
+        <span>{maxFiles > 1 ? fmt(t.chooseFiles, { n: maxFiles, mb: maxMb }) : fmt(t.chooseFile, { mb: maxMb })}</span>
       </label>
       <input
         id={id}
@@ -50,7 +53,7 @@ export function FileInput({
           {files.map((f, i) => (
             <li key={`${f.name}-${i}`} className="flex items-center justify-between rounded-md bg-secondary px-3 py-1.5 text-sm">
               <span className="truncate">{f.name} <span className="text-muted-foreground">({(f.size / 1024 / 1024).toFixed(1)} MB)</span></span>
-              <button type="button" aria-label={`Remove ${f.name}`} onClick={() => onChange(files.filter((_, j) => j !== i))} className="ml-2 rounded p-1 hover:bg-background">
+              <button type="button" aria-label={fmt(t.remove, { name: f.name })} onClick={() => onChange(files.filter((_, j) => j !== i))} className="ml-2 rounded p-1 hover:bg-background">
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
             </li>
@@ -62,10 +65,15 @@ export function FileInput({
   );
 }
 
-export function checkFiles(files: File[], maxMb: number, types: string[]) {
+export function checkFiles(
+  files: File[],
+  maxMb: number,
+  types: string[],
+  msg: { fileTooBig: string; fileType: string } = { fileTooBig: "{name} is larger than {mb} MB.", fileType: "{name} is not an allowed file type." },
+) {
   for (const f of files) {
-    if (f.size > maxMb * 1024 * 1024) return `${f.name} is larger than ${maxMb} MB.`;
-    if (types.length && !types.includes(f.type)) return `${f.name} is not an allowed file type.`;
+    if (f.size > maxMb * 1024 * 1024) return fmt(msg.fileTooBig, { name: f.name, mb: maxMb });
+    if (types.length && !types.includes(f.type)) return fmt(msg.fileType, { name: f.name });
   }
   return null;
 }

@@ -5,6 +5,7 @@ import { team } from "@/content/company";
 import { locationPages } from "@/content/misc";
 import { getCaseStudies, getJobs, getPosts } from "@/lib/cms";
 import { absoluteUrl } from "@/lib/seo";
+import { localeTags, locales, localizePath } from "@/i18n/config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [posts, caseStudies, jobs] = await Promise.all([getPosts(), getCaseStudies(), getJobs()]);
@@ -15,7 +16,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency,
     priority,
   });
-  return [
+  // Every page exists in each language; list each version with hreflang alternates to all of them.
+  const withLocales = (e: ReturnType<typeof entry>): MetadataRoute.Sitemap => {
+    const path = new URL(e.url).pathname;
+    const languages = Object.fromEntries(locales.map((l) => [localeTags[l], absoluteUrl(localizePath(l, path))]));
+    return locales.map((l) => ({ ...e, url: absoluteUrl(localizePath(l, path)), alternates: { languages } }));
+  };
+  const pages = [
     entry("/", 1, "weekly"),
     entry("/services", 0.9, "weekly"),
     ...services.map((s) => entry(`/services/${s.slug}`, 0.9)),
@@ -30,4 +37,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...jobs.map((j) => entry(`/careers/${j.slug}`, 0.6, "weekly")),
     ...["/privacy-policy", "/terms-and-conditions", "/refund-policy", "/cookie-policy"].map((p) => entry(p, 0.2, "yearly")),
   ];
+  return pages.flatMap(withLocales);
 }

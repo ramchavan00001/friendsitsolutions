@@ -138,38 +138,38 @@ export const locationPages = [
 ];
 
 export const mainNav = [
-  { label: "Services", href: "/services", mega: true },
-  { label: "Industries", href: "/industries" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
-];
+  { key: "services", label: "Services", href: "/services", mega: true },
+  { key: "industries", label: "Industries", href: "/industries" },
+  { key: "portfolio", label: "Portfolio", href: "/portfolio" },
+  { key: "pricing", label: "Pricing", href: "/pricing" },
+  { key: "about", label: "About", href: "/about" },
+  { key: "blog", label: "Blog", href: "/blog" },
+  { key: "careers", label: "Careers", href: "/careers" },
+  { key: "contact", label: "Contact", href: "/contact" },
+] as const;
 
 export const footerLinks = {
   company: [
-    { label: "About Us", href: "/about" },
-    { label: "Portfolio", href: "/portfolio" },
-    { label: "Testimonials", href: "/testimonials" },
-    { label: "Careers", href: "/careers" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { key: "about", label: "About Us", href: "/about" },
+    { key: "portfolio", label: "Portfolio", href: "/portfolio" },
+    { key: "testimonials", label: "Testimonials", href: "/testimonials" },
+    { key: "careers", label: "Careers", href: "/careers" },
+    { key: "blog", label: "Blog", href: "/blog" },
+    { key: "contact", label: "Contact", href: "/contact" },
   ],
   resources: [
-    { label: "Industries", href: "/industries" },
-    { label: "Technologies", href: "/technologies" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Support Ticket", href: "/support" },
-    { label: "Client Portal", href: "/client-portal" },
-    { label: "Book a Meeting", href: "/book-a-meeting" },
+    { key: "industries", label: "Industries", href: "/industries" },
+    { key: "technologies", label: "Technologies", href: "/technologies" },
+    { key: "pricing", label: "Pricing", href: "/pricing" },
+    { key: "faq", label: "FAQ", href: "/faq" },
+    { key: "support", label: "Support Ticket", href: "/support" },
+    { key: "portal", label: "Client Portal", href: "/client-portal" },
+    { key: "book", label: "Book a Meeting", href: "/book-a-meeting" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions", href: "/terms-and-conditions" },
-    { label: "Refund Policy", href: "/refund-policy" },
-    { label: "Cookie Policy", href: "/cookie-policy" },
+    { key: "privacy", label: "Privacy Policy", href: "/privacy-policy" },
+    { key: "terms", label: "Terms & Conditions", href: "/terms-and-conditions" },
+    { key: "refund", label: "Refund Policy", href: "/refund-policy" },
+    { key: "cookies", label: "Cookie Policy", href: "/cookie-policy" },
   ],
-};
+} as const;

@@ -2,12 +2,15 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { FormType } from "@/lib/forms/schemas";
+import { localizePath } from "@/i18n/config";
+import { useI18n } from "@/i18n/provider";
 
 type Options = { redirect?: boolean };
 
 /** Posts a validated form (plus files, honeypot and Turnstile token) to /api/forms/[type]. */
 export function useFormSubmit(type: FormType, { redirect = true }: Options = {}) {
   const router = useRouter();
+  const { locale, t } = useI18n();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
@@ -24,13 +27,13 @@ export function useFormSubmit(type: FormType, { redirect = true }: Options = {})
     try {
       const res = await fetch(`/api/forms/${type}`, { method: "POST", body });
       const data = (await res.json()) as { ok: boolean; error?: string; reference?: string };
-      if (!res.ok || !data.ok) throw new Error(data.error ?? "Something went wrong. Please try again.");
+      if (!res.ok || !data.ok) throw new Error(data.error ?? t.forms.genericError);
       setStatus("success");
-      if (redirect) router.push(`/thank-you?type=${type}&ref=${encodeURIComponent(data.reference ?? "")}`);
+      if (redirect) router.push(localizePath(locale, `/thank-you?type=${type}&ref=${encodeURIComponent(data.reference ?? "")}`));
       return data;
     } catch (e) {
       setStatus("error");
-      setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
+      setError(e instanceof Error ? e.message : t.forms.genericError);
       return null;
     }
   }

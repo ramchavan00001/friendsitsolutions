@@ -9,12 +9,14 @@ import { supportSchema, uploadRules, type SupportInput } from "@/lib/forms/schem
 import { useFormSubmit } from "./use-form-submit";
 import { ConsentCheckbox, Field, FormFooter, Honeypot, a11y } from "./fields";
 import { FileInput, checkFiles } from "./file-input";
+import { useI18n } from "@/i18n/provider";
 
 const rule = uploadRules.support!;
 const categories = supportSchema.shape.category.options;
 const priorities = supportSchema.shape.priority.options;
 
 export function SupportForm() {
+  const t = useI18n().t.forms;
   const [files, setFiles] = useState<File[]>([]);
   const [fileError, setFileError] = useState<string | null>(null);
   const { submit, status, error, setToken, honeypot, setHoneypot } = useFormSubmit("support");
@@ -24,46 +26,46 @@ export function SupportForm() {
   });
 
   const onSubmit = handleSubmit((v) => {
-    const fe = checkFiles(files, rule.maxBytes / 1024 / 1024, rule.types);
+    const fe = checkFiles(files, rule.maxBytes / 1024 / 1024, rule.types, t);
     setFileError(fe);
     if (fe) return;
     return submit(v, [{ field: rule.field, files }]);
   });
 
   return (
-    <form noValidate onSubmit={onSubmit} className="relative space-y-5" aria-label="Support ticket">
+    <form noValidate onSubmit={onSubmit} className="relative space-y-5" aria-label={t.supportTicket}>
       <Honeypot value={honeypot} onChange={setHoneypot} />
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field id="s-name" label="Full name" required error={errors.name?.message}>
+        <Field id="s-name" label={t.fullName} required error={errors.name?.message}>
           <Input autoComplete="name" {...a11y("s-name", errors.name?.message)} {...register("name")} />
         </Field>
-        <Field id="s-email" label="Email" required error={errors.email?.message}>
+        <Field id="s-email" label={t.email} required error={errors.email?.message}>
           <Input type="email" autoComplete="email" {...a11y("s-email", errors.email?.message)} {...register("email")} />
         </Field>
-        <Field id="s-phone" label="Phone" error={errors.phone?.message}>
+        <Field id="s-phone" label={t.phone} error={errors.phone?.message}>
           <Input type="tel" autoComplete="tel" {...a11y("s-phone", errors.phone?.message)} {...register("phone")} />
         </Field>
-        <Field id="s-company" label="Company">
+        <Field id="s-company" label={t.company}>
           <Input autoComplete="organization" {...a11y("s-company")} {...register("company")} />
         </Field>
-        <Field id="s-cat" label="Category" required>
-          <Select {...a11y("s-cat")} {...register("category")}>{categories.map((c) => <option key={c}>{c}</option>)}</Select>
+        <Field id="s-cat" label={t.category} required>
+          <Select {...a11y("s-cat")} {...register("category")}>{categories.map((c) => <option key={c} value={c}>{t.categories[c]}</option>)}</Select>
         </Field>
-        <Field id="s-pri" label="Priority" required hint="Critical = business stopped. Please also call us.">
-          <Select {...a11y("s-pri")} {...register("priority")}>{priorities.map((p) => <option key={p}>{p}</option>)}</Select>
+        <Field id="s-pri" label={t.priority} required hint={t.priorityHint}>
+          <Select {...a11y("s-pri")} {...register("priority")}>{priorities.map((p) => <option key={p} value={p}>{t.priorities[p]}</option>)}</Select>
         </Field>
       </div>
-      <Field id="s-subject" label="Subject" required error={errors.subject?.message}>
+      <Field id="s-subject" label={t.subject} required error={errors.subject?.message}>
         <Input {...a11y("s-subject", errors.subject?.message)} {...register("subject")} />
       </Field>
-      <Field id="s-desc" label="Describe the issue" required error={errors.description?.message} hint="What happened, when it started, error messages and what you've tried.">
+      <Field id="s-desc" label={t.describeIssue} required error={errors.description?.message} hint={t.issueHint}>
         <Textarea rows={6} {...a11y("s-desc", errors.description?.message)} {...register("description")} />
       </Field>
-      <FileInput label="Screenshots / logs (optional)" files={files} onChange={setFiles} accept=".pdf,.png,.jpg,.jpeg,.webp,.txt" maxFiles={rule.maxFiles} maxMb={rule.maxBytes / 1024 / 1024} error={fileError} />
+      <FileInput label={t.screenshots} files={files} onChange={setFiles} accept=".pdf,.png,.jpg,.jpeg,.webp,.txt" maxFiles={rule.maxFiles} maxMb={rule.maxBytes / 1024 / 1024} error={fileError} />
       <ConsentCheckbox id="s-consent" registration={register("consent")} error={errors.consent?.message} />
       <FormFooter onToken={setToken} error={error} />
       <Button type="submit" size="lg" disabled={status === "submitting"}>
-        {status === "submitting" ? <><Loader2 className="animate-spin" /> Creating ticket…</> : <><LifeBuoy /> Create ticket</>}
+        {status === "submitting" ? <><Loader2 className="animate-spin" /> {t.creatingTicket}</> : <><LifeBuoy /> {t.createTicket}</>}
       </Button>
     </form>
   );

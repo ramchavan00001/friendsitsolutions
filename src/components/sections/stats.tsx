@@ -8,7 +8,8 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const reduce = useReducedMotion();
   const [value, setValue] = useState(reduce ? to : 0);
   useEffect(() => {
-    if (!inView || reduce) return;
+    if (reduce) return setValue(to);
+    if (!inView) return;
     const controls = animate(0, to, { duration: 1.6, ease: "easeOut", onUpdate: (v) => setValue(Math.round(v)) });
     return () => controls.stop();
   }, [inView, reduce, to]);
@@ -21,9 +22,9 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 }
 
 /** Deep green strip of key numbers with thin gold figures. */
-export function Stats({ items }: { items: { value: number; suffix?: string; label: string; animate?: boolean }[] }) {
+export function Stats({ items, label = "Company statistics" }: { items: { value: number; suffix?: string; label: string; animate?: boolean }[]; label?: string }) {
   return (
-    <section aria-label="Company statistics" className="bg-deep text-cream">
+    <section aria-label={label} className="bg-deep text-cream">
       <div className="container">
         <dl className="grid grid-cols-2 md:grid-cols-5">
           {items.map((s, i) => (

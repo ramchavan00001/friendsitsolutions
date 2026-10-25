@@ -69,6 +69,14 @@
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
+  :root {
+    --font-jp: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, Meiryo, "Noto Sans JP", "Noto Sans CJK JP";
+  }
+  /* Letter-spacing pulls Devanagari conjuncts apart, so tracked labels go untracked in Hindi/Marathi. */
+  :lang(hi) *,
+  :lang(mr) * {
+    letter-spacing: normal !important;
+  }
 }
 
 @layer components {

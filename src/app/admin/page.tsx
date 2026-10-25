@@ -7,7 +7,7 @@ import { adminTabs, counts, isTable, listRows, statuses, type AdminTable } from 
 import { cn, formatDate } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Admin Dashboard", robots: { index: false, follow: false } };
+
 
 async function updateStatus(formData: FormData) {
   "use server";
