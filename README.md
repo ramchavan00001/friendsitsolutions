@@ -208,6 +208,32 @@ Using Strapi instead? Replace `sanityFetch` in `lib/cms.ts` with calls to the St
 5. In Resend, verify the sending domain (SPF/DKIM). In Cloudflare Turnstile, add the production domain to the widget.
 6. Post-launch checklist: submit the sitemap in Search Console, test every form end-to-end (check both the admin email and the auto-reply), confirm `/admin` prompts for credentials, run Lighthouse on mobile.
 
+## Deploying to Cloudflare (Workers)
+
+The site runs on Cloudflare Workers through the [OpenNext Cloudflare adapter](https://opennext.js.org/cloudflare) (`wrangler.jsonc`, `open-next.config.ts`). Forms, the chatbot, `/admin` and language routing all run in the Worker; prerendered pages are served from Workers static assets, so no R2 bucket or KV namespace is needed.
+
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Normal Next.js dev server (fastest for editing) |
+| `npm run cf:build` | Production build adapted for Cloudflare, output in `.open-next/` |
+| `npm run preview` | Build, then run it locally in Cloudflare's runtime at http://localhost:8787 |
+| `npm run deploy` | Build and deploy to production (`friendsitsolutions.<account>.workers.dev`) |
+| `npm run upload` | Build and upload a new version **without** making it live — Cloudflare gives it a preview URL |
+
+First deploy:
+
+1. `npx wrangler login` (opens the browser to authorise your Cloudflare account).
+2. Put the public build-time variables (`NEXT_PUBLIC_*`) in `.env` — they are baked into the build.
+3. `npm run deploy`.
+4. Add the server secrets once: `npx wrangler secret put RESEND_API_KEY` (repeat for `SUPABASE_SERVICE_ROLE_KEY`, `TURNSTILE_SECRET_KEY`, `ANTHROPIC_API_KEY`, `ADMIN_PASSWORD`, `IP_HASH_SALT`, …), or add them in the dashboard under Workers & Pages → friendsitsolutions → Settings → Variables and Secrets. Non-secret values (`ADMIN_EMAIL`, `EMAIL_FROM`, `SUPABASE_URL`, `ADMIN_USERNAME`…) can go there as plain-text variables.
+5. Custom domain: Workers & Pages → friendsitsolutions → Settings → Domains & Routes → Add → Custom domain (the domain's DNS must be on Cloudflare). Update `NEXT_PUBLIC_SITE_URL` and redeploy.
+
+For local `npm run preview`, server-side values go in `.dev.vars` (same `KEY=value` format as `.env`; git-ignored).
+
+**Automatic deploys from GitHub (optional):** Workers & Pages → Create → Import a repository → pick this repo, build command `npx opennextjs-cloudflare build`, deploy command `npx opennextjs-cloudflare deploy`. Add the `NEXT_PUBLIC_*` values as build variables.
+
+Notes: the compressed Worker is about 2.5 MB, inside the free plan's 3 MB limit (10 MB on paid). Content edits go live on the next deploy; if you connect Sanity and want its 5-minute refresh without redeploying, switch `open-next.config.ts` to the R2 incremental cache.
+
 ---
 
 ## Verified locally

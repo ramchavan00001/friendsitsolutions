@@ -1,0 +1,17 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	// Cloudflare Worker built by OpenNext (npm run deploy). The name becomes <name>.<account>.workers.dev.
+	"name": "friendsitsolutions",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2026-09-15",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	// esbuild's keepNames adds __name() calls that break Next's inline browser scripts (e.g. the theme script).
+	"keep_names": false,
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"observability": {
+		"enabled": true
+	}
+}
